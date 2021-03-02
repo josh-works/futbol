@@ -49,8 +49,39 @@ cd futbol
 atom readme.md
 ```
 
-This is what I've done for the above. I'll commit it via:
+This is what I've done for the above. 
+
+When pasting my git commands, I use my _actual terminal commands, aliases included_, because it'll reveal a slightly higher amount of information about how I work and patterns I use. 
+
+If at any point it get in the way of your learning, and I've either not explained it, or not explained it adequately, let me know and I'll clarify.
+
+I'll commit it via:
 
 ```
+git init
+git status
+ga .
+gc -m "initial commit"
+hub create
+git lg
+```
+
+And the output:
 
 ```
+* 4b3ca40 - (HEAD -> master) initial commit (2 minutes ago) <Josh Thompson>
+```
+
+And you can figure out how to browse to the above commit in the repo (that's a whole sub-skill of itself I could talk about) and view the commit I just made _checks watch_ 3 minutes ago from when I type these words.
+
+The timing doesn't matter a lot, but it matters _at least a little_, in that the way code changes over time tells a story, had a purpose and meaning. 
+
+The _speed_ at which a story unfolds adds meaning to the story, so inasmuch as the time I've spent working on this (and how that might correlate to how quickly you could do ("worse"|"the same"|"better")) has implications. 
+
+I just added the `busy constraint` in commit `c7dc5d4` which adds some context.
+
+I'll also be using screenshots throughout this guide, so I need a location to store the screenshots. _you obviously don't need a screenshot directory_.
+
+![here's how images work](/)
+
+
