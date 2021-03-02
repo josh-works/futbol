@@ -22,6 +22,7 @@ I'm building this resource with several goals and related constraints in mind:
 - time, current knowledge
 - I desire to "follow the path of most value", and I plan on this resource or a related resource to some day convey the kind of learning in a short enough time that people would plausibly spend non-trivial resources to learn more from. 
 - I've been typing for 10 minutes and I'm hoping to have at least some of this project done in the next 30 minutes
+- My wife and I are pretty busy today. It's also relevant how much income I bring in. I'm a husband, future father, neighbor, homeowner, etc. I've got lots of competing demands on my time, and I hope to not waste _your_ time that you might spend on this resource with me, no matter how you busy you are or are not. 
 
 ---------------
 
