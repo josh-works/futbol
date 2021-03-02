@@ -82,6 +82,10 @@ I just added the `busy constraint` in commit `c7dc5d4` which adds some context.
 
 I'll also be using screenshots throughout this guide, so I need a location to store the screenshots. _you obviously don't need a screenshot directory_.
 
-![here's how images work](/)
+![here's how images work](/images/2021-03-02 at 3.45 PM-screenshot.jpg)
+
+And that'll be another commit. Obviously you don't need to be committing like this or anything. I just want to explain every step of my process.
+
+
 
 
