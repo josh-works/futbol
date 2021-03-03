@@ -178,4 +178,53 @@ mkdir csv_exploration_lesson
 curl https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv?accessType=DOWNLOAD -o csv_exploration_lesson/popular_baby_names.csv
 ```
 
+Commit for the above: `de569db`
+
+### Getting Started: Outline `name.rb`
+
+Per the recommendation, I'll copy/paste the snippet into `name.rb`.
+
+Gosh, their snippet was rough. It's not actually syntactically valid. I had to:
+
+1. comment out all of `initialize`
+1. add an `end`
+1. add a `pry`
+1. add a method call at the bottom
+1. I had to rename the file/constant
+
+Now I can run it in ruby with `ruby csv_exploration_lesson/name.rb`. Here's what I've got right now:
+
+```ruby
+require 'csv'
+require 'pry'
+
+class Name
+  attr_reader :year, :bio_gender, :ethnicity, :name, :count, :rank
+  @@filename = 'csv_exploration_lesson/popular_baby_names.csv'
+
+  def initialize(data)
+    require "pry"; binding.pry
+    # @year = 
+    # @bio_gender = 
+    # @ethnicity = 
+    # @name = 
+    # @count = 
+    # @rank = 
+  end
+
+  def self.find_by_name(name)
+    rows = CSV.read(@@filename, headers: true)
+    result = []
+    name = Name.new(rows.first)
+    # new code goes here
+    
+    result
+  end
+end
+
+Name.find_by_name("josh")
+```
+
+
+
 
