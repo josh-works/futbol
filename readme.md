@@ -128,8 +128,54 @@ I'll be using aliases for git commands. I've got them setup in my ~/.gitconfig, 
 	coloring = highlightRecent
 ```
 
+The above committed in `1f15647`
 
+## Let's set this thing up...
 
-## 
+OH! Forgot to mention... I'm about 20 minutes into beginning this project. Most of that time has been writing the above "outline" of everything. After the last commit on march 2, I was out of the house for the evening, having a covid-safe outdoor dinner with some friends in Denver.
+
+The commit logs will show "wall time" that's elapsed as I've completed this project, but I'll be carefully tracking how much time I spend actually _implementing_ this project. So far, we've not really begun any implementation besides setting up an empty git repo, adding a `readme.md`, and a folder for images.
+
+Back to the `futbol` spec, under `iterations`: [https://backend.turing.io/module1/projects/futbol/index](https://backend.turing.io/module1/projects/futbol/index)
+
+- `Iteration 1: Setup and File I/O`
+
+Click the link to `iteration 1`: [https://backend.turing.io/module1/projects/futbol/iterations/file_io](https://backend.turing.io/module1/projects/futbol/iterations/file_io)
+
+The steps are:
+
+1. One team member forks the repository here and adds the other(s) as collaborators.
+1. Each of the other team members accepts the invitation to collaborate and then clones the repository.
+1. Setup SimpleCov to monitor test coverage along the way.
+1. Create a Rakefile that will run each of your test files without having to run them individually. See this lesson plan for more details.
+
+I'll be skipping the Rakefile and Simplecov step for now. If you're following this guide, do the same. Both of those are worth learning, and setting up, but later, not now. 
+
+OK, the `File I/O` section... is so barebones. 
+
+I'm going to take a break from this (because the instructions are junk) and take a tour through... [CSV Exploration](https://backend.turing.io/module1/lessons/csv_exploration)
+
+## A Digression to Turing's "CSV Exploration" lesson
+
+Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.io/module1/lessons/csv_exploration](https://backend.turing.io/module1/lessons/csv_exploration)
+
+Honestly, I think this will be useful for me, because there's lots of data processing I want to do for other projects, related to parsing and relating large CSV exports. So, no matter where you are in your Turing Journey, this will serve you well. 
+
+OK, even before CSV exploration, taking a dive into Turing's lesson on class methods, because we'll end up needed this kind of information for the setup of `futbol`, else you'll end up struggling to implement any sort of OO principles.
+
+## A further digression to Turing's Class Methods lesson (which uses CSV data!)
+
+We'll work through [https://backend.turing.io/module1/lessons/class_methods](https://backend.turing.io/module1/lessons/class_methods).
+
+I encourage you to do the same. I'm going to do this work in this repo, just for the sake of easy committing/tracking of progress. I'm working through the `Practical Use, Experimentation` section:
+
+### Getting started: Download Baby Names
+
+I'll use `curl` to download the given file. I don't always remember the exact syntax for `curl` commands, so I'll do `tldr curl` and see that I want to use:
+
+```
+mkdir csv_exploration_lesson
+curl https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv?accessType=DOWNLOAD -o csv_exploration_lesson/popular_baby_names.csv
+```
 
 
