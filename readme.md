@@ -424,8 +424,49 @@ and when I run it, I get the results:
 
 ![counts](/images/2021-03-03-at-9.49 AM-counts.jpg)
 
-Done with question 2.
+Done with question 2. commit: `8b86bda`
 
 ### Question 3: `build one alternate copy of self.find_by_name` for finding things on another column, like `find_by_year`
 
+
+Cool, added the method:
+
+```ruby
+def self.find_by_year(year)
+  all_names.select do |name|
+    name.year == year
+  end
+end
+```
+
+and the "tests":
+
+```ruby
+
+pp "count for 2011"
+pp Name.find_by_year("2011").count
+
+pp "count for 2012"
+pp Name.find_by_year("2012").count
+
+pp "count for 2013"
+pp Name.find_by_year("2013").count
+
+```
+
+(I had to look through the CSV file itself a little to see what the actual available years were.)
+
+I decided to also add a `grouped_by_year` method that returns the year and count of names, like so:
+
+```
+ruby csv_exploration_lesson/name.rb
+"grouped by year"
+{"2011"=>5863,
+"2012"=>5859,
+"2014"=>5865,
+"2013"=>5796,
+"2017"=>1973,
+"2016"=>2063,
+"2015"=>2045}
+```
 

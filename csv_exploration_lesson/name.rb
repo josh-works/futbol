@@ -32,22 +32,35 @@ class Name
       name.name == name_to_find
     end
   end
+  
+  def self.find_by_year(year)
+    all_names.select do |name|
+      name.year == year
+    end
+  end
+  
+  def self.count_by_year
+    grouped = all_names.group_by do |name|
+      name.year
+    end
+    grouped.reduce({}) do |talley, name|
+      talley[name.first] = name[1].count
+      talley
+    end
+  end
 end
 
-pp "count for Ian"
-pp Name.find_by_name("Ian").count
+pp "grouped by year"
+pp Name.count_by_year
 
-pp "count for Megan"
-pp Name.find_by_name("Megan").count
+pp "count for 2011"
+pp Name.find_by_year("2011").count
 
-pp "count for Sal"
-pp Name.find_by_name("Sal").count
+pp "count for 2012"
+pp Name.find_by_year("2012").count
 
-pp "count for Omar"
-pp Name.find_by_name("Omar").count
+pp "count for 2013"
+pp Name.find_by_year("2013").count
 
-pp "count for Riley"
-pp Name.find_by_name("Riley").count
 
-pp "count for Hunter"
-pp Name.find_by_name("Hunter").count
+
