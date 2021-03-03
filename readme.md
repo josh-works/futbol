@@ -459,7 +459,7 @@ pp Name.find_by_year("2013").count
 I decided to also add a `grouped_by_year` method that returns the year and count of names, like so:
 
 ```
-ruby csv_exploration_lesson/name.rb
+$ ruby csv_exploration_lesson/name.rb
 "grouped by year"
 {"2011"=>5863,
 "2012"=>5859,
@@ -470,3 +470,66 @@ ruby csv_exploration_lesson/name.rb
 "2015"=>2045}
 ```
 
+Commit: `9ea851a`
+
+By the way, this is rapidly scaffolding up the constituent pieces of what you'll want to use in the `futbol` and `black_thursday` projects. The next few challenges in this lesson are highly applicable.
+
+### Question 4: `self.where({details})`
+
+Wouldn't it be nice to say:
+
+```
+Name.where({name: "josh"})
+Name.where({year: "2014"})
+Name.where({gender: "2014"})
+Name.where({rank: 1})
+```
+
+You could say "What are the top three most common names?" and answer with:
+
+```ruby
+Name.where(rank: 1)
+Name.where(rank: 2)
+Name.where(rank: 3)
+```
+
+Soon we'll ask "What are the top three most common names for girls?" and ask:
+
+```ruby
+Name.where(gender: "female", rank: 1)
+Name.where(gender: "female", rank: 2)
+Name.where(gender: "female", rank: 3)
+```
+and get the desired results. Let's build these methods.
+
+Phew.
+
+Took a few minutes, and quite a bit of playing around with the code. Here's what I settled on:
+
+```ruby
+# skipping this part
+  def self.where(query)
+    find_by = query.keys.first
+    criteria = query[find_by].downcase
+    
+    all_names.select do |name|
+      name.send(find_by) == criteria
+    end
+  end
+# skipping this part
+
+pp "where name = 'geraldine'"
+pp Name.where(name: 'geraldine').count
+pp "where year = '2014'"
+pp Name.where(year: '2014').count
+pp "where gender = 'male'"
+pp Name.where(bio_gender: 'male').count
+
+pp "top ranked names:"
+pp Name.where(rank: "1")
+
+```
+
+There's a lot going on in this method. I mis-labeled some of the attributes that I was searching for, and was getting back errors. (`bio_gender`, not `gender`, for instance.)
+
+Here's the commit. 

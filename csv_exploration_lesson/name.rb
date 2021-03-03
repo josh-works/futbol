@@ -7,8 +7,8 @@ class Name
   
   def initialize(data)
     @year = data[:year_of_birth]
-    @bio_gender = data[:gender]
-    @ethnicity = data[:ethnicity]
+    @bio_gender = data[:gender].downcase
+    @ethnicity = data[:ethnicity].downcase
     @name = data[:childs_first_name].downcase
     @count = data[:count]
     @rank = data[:rank]
@@ -48,19 +48,26 @@ class Name
       talley
     end
   end
+  
+  def self.where(query)
+    find_by = query.keys.first
+    criteria = query[find_by].downcase
+    
+    all_names.select do |name|
+      name.send(find_by) == criteria
+    end
+  end
 end
 
-pp "grouped by year"
-pp Name.count_by_year
+pp "where name = 'geraldine'"
+pp Name.where(name: 'geraldine').count
+pp "where year = '2014'"
+pp Name.where(year: '2014').count
+pp "where gender = 'male'"
+pp Name.where(bio_gender: 'male').count
 
-pp "count for 2011"
-pp Name.find_by_year("2011").count
-
-pp "count for 2012"
-pp Name.find_by_year("2012").count
-
-pp "count for 2013"
-pp Name.find_by_year("2013").count
+pp "top ranked names:"
+pp Name.where(rank: "1")
 
 
 
