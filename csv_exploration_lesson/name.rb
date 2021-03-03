@@ -34,4 +34,20 @@ class Name
   end
 end
 
-pp Name.find_by_name("MATTEO")
+pp "count for Ian"
+pp Name.find_by_name("Ian").count
+
+pp "count for Megan"
+pp Name.find_by_name("Megan").count
+
+pp "count for Sal"
+pp Name.find_by_name("Sal").count
+
+pp "count for Omar"
+pp Name.find_by_name("Omar").count
+
+pp "count for Riley"
+pp Name.find_by_name("Riley").count
+
+pp "count for Hunter"
+pp Name.find_by_name("Hunter").count

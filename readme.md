@@ -351,6 +351,7 @@ class Name
   end
   
   def self.load_name_data
+    puts "loading name data"
     rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
     rows.map do |row|
       Name.new(row)
@@ -371,4 +372,60 @@ pp Name.find_by_name("MATTEO")
 
 I'm liking this more. The `find_by_name` method is a bit simpler now, eh? 
 
-There's 
+Above refactor in commit `ca7fe13`
+
+-------------
+
+I know I'll be needing `all_names` in future methods, so I didn't want to have to keep re-reading the CSV every time I wanted to look at my names. 
+
+This method is possibly surprising to you:
+
+```ruby
+def self.all_names
+  @all_names ||= load_name_data
+end
+```
+It basically says:
+
+> If `@all_names` is set to anything, return it. If it's not, set it equal to whatever's on the right side of the `||=`. This means `load_name_data` will be called _exactly once_ and never again. `#load_name_data` returns an array of name objects, so once it's called, `all_names` is just "set" to it's return value. The CSV never has to be run again.
+
+This is `memoization`. [Here's a bit more about memoization](http://gavinmiller.io/2013/basics-of-ruby-memoization/)
+
+OK, this completes "challenge 1", and goes probably a bit above-and-beyond.
+
+### Question 2: `how many rows of data can you find for the following names`
+
+We're querying `Ian`, `Megan`, `Sal`, `Omar`, `Riley`, `Hunter`
+
+I added to the bottom of `name.rb` the following:
+
+```ruby
+
+pp "count for Ian"
+pp Name.find_by_name("Ian").count
+
+pp "count for Megan"
+pp Name.find_by_name("Megan").count
+
+pp "count for Sal"
+pp Name.find_by_name("Sal").count
+
+pp "count for Omar"
+pp Name.find_by_name("Omar").count
+
+pp "count for Riley"
+pp Name.find_by_name("Riley").count
+
+pp "count for Hunter"
+pp Name.find_by_name("Hunter").count
+```
+
+and when I run it, I get the results:
+
+![counts](/images/2021-03-03-at-9.49 AM-counts.jpg)
+
+Done with question 2.
+
+### Question 3: `build one alternate copy of self.find_by_name` for finding things on another column, like `find_by_year`
+
+
