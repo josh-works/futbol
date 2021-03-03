@@ -225,6 +225,59 @@ end
 Name.find_by_name("josh")
 ```
 
+commit: `39dda59`
 
+### Task 1: `Add code to the self.find_by_name method, which builds an array of Name objects that match the name column from our CSV data.`
 
+OK, lets do that...
+
+Here's some of the important bit:
+
+```ruby
+def self.find_by_name(name)
+  rows = CSV.read(@@filename, headers: true)
+  result = []
+  rows.each do |row|
+    result << Name.new(row)
+    # Calling the initialize method with each row, creating a new name object
+  end
+  
+  result
+end
+```
+
+I don't like having to use the current syntax, though. I stuck a pry in the `initialize`, and ran it, and I have to access data like so:
+
+```ruby
+> data["Year of Birth"]
+=> "2011"
+> data["Child's First Name"]
+=> "GERALDINE"
+>
+```
+
+I happen to know that you can call `symbolize_names` when reading a CSV, which makes life much easier. Let's update the `CSV.read` method. I had to hunt around a little bit to find the exact syntax. I tried `symbolize_names: true`, but that didn't work. Found `header_converters: :symbol` in the [CSV docs](https://ruby-doc.org/stdlib-2.7.1/libdoc/csv/rdoc/CSV.html#method-i-header_converters)
+
+```ruby
+def self.find_by_name(name)
+  rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
+  result = []
+  rows.each do |row|
+    result << Name.new(row)
+  end
+  
+  result
+end
+```
+
+Now I can access the data like so:
+
+```ruby
+> data[:year_of_birth]
+=> "2011"
+> data[:ethnicity]
+=> "HISPANIC"
+```
+
+OK, making progress, lets flesh out the `initialize` method, and rerun the whole thing:
 
