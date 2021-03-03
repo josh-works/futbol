@@ -84,8 +84,52 @@ I'll also be using screenshots throughout this guide, so I need a location to st
 
 ![here's how images work](/images/2021-03-02 at 3.45 PM-screenshot.jpg)
 
-And that'll be another commit. Obviously you don't need to be committing like this or anything. I just want to explain every step of my process.
+And that'll be another commit. Obviously you don't need to be committing like this or anything. I just want to explain every step of my process, so if you check out the specific commits I list in the future, you'll be able to understand all the constituent pieces of what's gone into the application.
+
+`5668ba1`
+
+### Git shortcut digression
+
+I'll be using aliases for git commands. I've got them setup in my ~/.gitconfig, which currently contains:
+
+```
+# ~/.gitconfig
+# This is Git's per-user configuration file.
+[user]
+	name = Josh Thompson
+	email = thompsonjoshd@gmail.com
+[alias]
+  co = checkout
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  st = status
+  br = branch
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[branch]
+	sort=committerdate
+[push]
+	default = matching
+[core]
+	editor = atom
+	excludesfile = /Users/joshthompson/.gitignore_global
+	
+	# from https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
+	attributesfile = /Users/joshthompson/.gitattributes
+[color]
+	ui = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[blame]
+	# coloring = repeatedLines
+	coloring = highlightRecent
+```
 
 
+
+## 
 
 
