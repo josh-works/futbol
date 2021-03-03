@@ -9,20 +9,29 @@ class Name
     @year = data[:year_of_birth]
     @bio_gender = data[:gender]
     @ethnicity = data[:ethnicity]
-    @name = data[:childs_first_name]
+    @name = data[:childs_first_name].downcase
     @count = data[:count]
     @rank = data[:rank]
   end
-
-  def self.find_by_name(name)
+  
+  def self.all_names
+    @all_names ||= load_name_data
+  end
+  
+  def self.load_name_data
     rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
-    result = []
-    rows.each do |row|
-      result << Name.new(row)
+    rows.map do |row|
+      Name.new(row)
     end
+  end
+
+  def self.find_by_name(name_to_find)
+    name_to_find = name_to_find.downcase
     
-    result
+    all_names.select do |name|
+      name.name == name_to_find
+    end
   end
 end
 
-pp Name.find_by_name("josh")
+pp Name.find_by_name("MATTEO")

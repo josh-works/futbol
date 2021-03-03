@@ -281,3 +281,94 @@ Now I can access the data like so:
 
 OK, making progress, lets flesh out the `initialize` method, and rerun the whole thing:
 
+current commit: `9c92d5f`
+
+So, we're getting our data to "be built" and it's accessible as `Name` objects. Lets find the ones that match the name we're looking for!
+
+OK, refactored the class a little. I made these changes in a non-sequential order. Examine the changes to the class, see if you can see what happened:
+
+```diff
+diff --git a/csv_exploration_lesson/name.rb b/csv_exploration_lesson/name.rb
+index ce8b02c..7df7319 100644
+--- a/csv_exploration_lesson/name.rb
++++ b/csv_exploration_lesson/name.rb
+@@ -9,20 +9,23 @@ def initialize(data)
+     @year = data[:year_of_birth]
+     @bio_gender = data[:gender]
+     @ethnicity = data[:ethnicity]
+-    @name = data[:childs_first_name]
++    @name = data[:childs_first_name].downcase
+     @count = data[:count]
+     @rank = data[:rank]
+   end
+
+-  def self.find_by_name(name)
++  def self.find_by_name(name_to_find)
++    name_to_find = name_to_find.downcase
+     rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
+-    result = []
++    all_names = []
+     rows.each do |row|
+-      result << Name.new(row)
++      all_names << Name.new(row)
++    end
++    result = all_names.select do |name|
++      name.name == name_to_find
+     end
+-
+     result
+   end
+ end
+
+-pp Name.find_by_name("josh")
+\ No newline at end of file
++pp Name.find_by_name("MATTEO")
+```
+
+It's... growing complicated, this particular `find_by_name` method. 
+
+It also works. It finds the names of everyone named `Matteo`, regardless of the capitalization/case of the input. Lets do a little refactor, to move the CSV reading "process" into its own method:
+
+```ruby
+require 'csv'
+require 'pry'
+
+class Name
+  attr_reader :year, :bio_gender, :ethnicity, :name, :count, :rank
+  @@filename = 'csv_exploration_lesson/popular_baby_names.csv'
+  
+  def initialize(data)
+    @year = data[:year_of_birth]
+    @bio_gender = data[:gender]
+    @ethnicity = data[:ethnicity]
+    @name = data[:childs_first_name].downcase
+    @count = data[:count]
+    @rank = data[:rank]
+  end
+  
+  def self.all_names
+    @all_names ||= load_name_data
+  end
+  
+  def self.load_name_data
+    rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
+    rows.map do |row|
+      Name.new(row)
+    end
+  end
+
+  def self.find_by_name(name_to_find)
+    name_to_find = name_to_find.downcase
+    
+    all_names.select do |name|
+      name.name == name_to_find
+    end
+  end
+end
+
+pp Name.find_by_name("MATTEO")
+```
+
+I'm liking this more. The `find_by_name` method is a bit simpler now, eh? 
+
+There's 
