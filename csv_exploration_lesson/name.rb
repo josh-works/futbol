@@ -57,17 +57,24 @@ class Name
       name.send(find_by) == criteria
     end
   end
+  
+  def self.order(query)
+    sort_by = query.keys.first
+    direction = query[sort_by].downcase
+    asc_sorted = all_names.sort_by do |name|
+      name.send(sort_by)
+    end
+    asc_sorted.reverse! if direction == :desc
+    
+    asc_sorted
+  end
 end
 
-pp "where name = 'geraldine'"
-pp Name.where(name: 'geraldine').count
-pp "where year = '2014'"
-pp Name.where(year: '2014').count
-pp "where gender = 'male'"
-pp Name.where(bio_gender: 'male').count
+pp "Name.order( year: :desc)"
+pp Name.order( year: :desc).first
+pp Name.order( year: :desc)[2..5]
 
-pp "top ranked names:"
-pp Name.where(rank: "1")
+pp Name.order( year: :desc).last
 
 
 

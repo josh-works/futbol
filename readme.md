@@ -563,3 +563,36 @@ My goal is, when _you_ have worked through this resource, you'll have a good ide
 Even I am building up "new" knowledge in working through this lesson. Most of it is coming easily to me, some of this is requiring a little digging around. If you consider yourself to be "struggling" to keep up, don't. Just move slower, find what's complicated, play with the code in pry, experiment with building it up yourself, and if still stuck, DM me or ask in the `#ruby-exercises` channel at Turing. 
 
 -----------------
+
+## 2021-03-04
+
+Picking this up again, day 3 of spending a little time on this lesson. If you're not spending a ton of time exhaustively documenting your own progress through these exercises, I expect you'll move through all of this in a single sitting, or at least a lot fewer hours than I am. 
+
+-----------------
+
+OK, not too bad. I re-used elements from the prior method, and ended up with:
+
+```ruby
+def self.order(query)
+	sort_by = query.keys.first
+	direction = query[sort_by].downcase
+	asc_sorted = all_names.sort_by do |name|
+		name.send(sort_by)
+	end
+	asc_sorted.reverse! if direction == :desc
+	
+	asc_sorted
+end
+```
+
+I "tested" it with the following, using `:asc` and `:desc` in different ways:
+
+```ruby
+
+pp "Name.order( year: :desc)"
+pp Name.order( year: :desc).first
+pp Name.order( year: :desc)[2..5]
+
+pp Name.order( year: :desc).last
+```
+
