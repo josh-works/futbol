@@ -890,3 +890,26 @@ class Name
 I decided I wanted to parameterize the ethnicity. "WHITE NON HISPANIC" is just a pain to pass around when doing queries. 
 
 I also have some invalid ethnicities, so I need to handle them one-off
+
+Here's where the code is right now: `1da895c`
+
+I have a good way to make sure that ethnicities passed in are validated and converted from a string to a down-cased, parameterized, valid symbol.
+
+Sidebar: I learned about how to require the `parameterize` method - I've used it in Rails, but it's not included in the "bare" ruby class. 
+
+I wrote an explanatory "today-i-learned" about it. Check it out here: [Parameterize Strings](https://github.com/josh-works/til/blob/main/ruby/parameterize-strings-with-active-support.md)
+
+Anyway, now I need to handle the invalid ethnicities. Maybe the only invalid ethnicities are this one:
+
+![errors](/images/2021-03-04-at-10.29 AM-raise-error.jpg)
+
+So I'll fix it: 
+
+![slowly-but-surely](/images/2021-03-04-at-10.32-AM-translating-symbols.jpg)
+
+I'm finding more broken keys when I re-run the code, so I'll fix them all as I find them. Looks like there is a total of three:
+
+![no more errors](/images/2021-03-04-at-10.34-AM-cleaning-ethnicity.jpg)
+
+Phew. Here's the code now:
+

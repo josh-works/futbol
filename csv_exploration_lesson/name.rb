@@ -24,9 +24,17 @@ class Name
       hispanic
     ].map(&:to_sym)
     
+    ethnicity_input_translation = {
+      asian_and_paci: :asian_and_pacific_islander,
+      black_non_hisp: :black_non_hispanic,
+      white_non_hisp: :white_non_hispanic
+    }
+    
     if valid_ethnicities.include?(ethnicity)
       ethnicity
-    elsif
+    elsif ethnicity_input_translation[ethnicity]
+      ethnicity_input_translation[ethnicity]
+    else
       raise "Invalid Name Ethnicity: #{ethnicity}"
     end
   end
