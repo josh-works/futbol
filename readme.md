@@ -911,5 +911,8 @@ I'm finding more broken keys when I re-run the code, so I'll fix them all as I f
 
 ![no more errors](/images/2021-03-04-at-10.34-AM-cleaning-ethnicity.jpg)
 
-Phew. Here's the code now:
+Phew. Here's the code now: `1c452c6`. I could refactor this, but... I don't really want to. Oh, nevermind, I'll re-name some things. 
 
+I ought to pull the lists into a widely accessible function, so people could still write strings, like `"black non hispanic"` and have the code operate as if they'd given `:black_non_hispanic`.
+
+I renamed some things: 

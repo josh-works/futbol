@@ -17,25 +17,25 @@ class Name
   
   def standardize_ethnicity(ethnicity)
     ethnicity = ethnicity.downcase.parameterize(separator: '_').to_sym
-    valid_ethnicities = %i[
+    valid_ethnicities_list = %i[
       black_non_hispanic
       asian_and_pacific_islander
       white_non_hispanic
       hispanic
-    ].map(&:to_sym)
+    ]
     
-    ethnicity_input_translation = {
+    invalid_input_ethnicity_conversion = {
       asian_and_paci: :asian_and_pacific_islander,
       black_non_hisp: :black_non_hispanic,
       white_non_hisp: :white_non_hispanic
     }
     
-    if valid_ethnicities.include?(ethnicity)
+    if valid_ethnicities_list.include?(ethnicity)
       ethnicity
-    elsif ethnicity_input_translation[ethnicity]
-      ethnicity_input_translation[ethnicity]
+    elsif invalid_input_ethnicity_conversion[ethnicity]
+      invalid_input_ethnicity_conversion[ethnicity]
     else
-      raise "Invalid Name Ethnicity: #{ethnicity}"
+      raise "Invalid NameEthnicity: #{ethnicity}"
     end
   end
   
