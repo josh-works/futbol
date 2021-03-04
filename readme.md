@@ -186,6 +186,10 @@ You'll get a feel for how software evolves. It's worth understanding!
 
 Consider yourself warned...
 
+## Manually create `lib` and `test` directories
+
+add a `.keep` to the inside - that lets the file get added to `git` and you can commit it:
+
 
 
 
