@@ -330,6 +330,17 @@ Of course I'll need to write tests against those classes, because the non-TDD wa
 
 I don't have to worry too much about the long-term growth of this application, since I know at minimum a little about the stuff I'll do with `Games`. I'll just set that up next time I sit down, and I'll share the progress with you.
 
-[]
+[9cfae08](9cfae08)
 
+OK, outlined an idea game class, based on the first row of `game.csv`. I'm just making on attribute for every column.
+
+I'll feed the data in probably as a comma-separated list, for now, so I'd call (again, copying now the 2nd line of the CSV):
+
+```
+"2012030221,20122013,Postseason,5/16/13,3,6,2,3,Toyota Stadium,/api/v1/venues/null"
+```
+```ruby
+data = "2012030221,20122013,Postseason,5/16/13,3,6,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
+Game.new(data)
+```
 
