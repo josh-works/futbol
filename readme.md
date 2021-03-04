@@ -274,12 +274,62 @@ Why not try running it? I know it's not going to work, we've not created the `St
 
 So, lets do that...
 
+create base class: [8b736b5](8b736b5)
+
+create runner file: [e951634](e951634)
+
+run it:
+
+```ruby
+ruby runner.rb
+
+From: /Users/joshthompson/me/projects/futbol/runner.rb:16 :
+
+    11:   game_teams: game_teams_path
+    12: }
+    13:
+    14: stat_tracker = StatTracker.from_csv(locations)
+    15:
+ => 16: require 'pry'; binding.pry
+
+main:0> stat_tracker
+=> nil
+```
+
+Cool.
+
+And now the instructions say:
+
+> `::from_csv` returns an instance of StatTracker. That instance of `StatTracker` will hold all of the information you need for the methods included in the remainder of the project description.
 
 
 
+hm. The only next step is: [https://backend.turing.io/module1/projects/futbol/iterations/statistics](https://backend.turing.io/module1/projects/futbol/iterations/statistics)
 
+Which doesn't talk much about how to set this thing up. 
 
+So, I'll take a minute to think about it. I need to read ahead and see what might be expected for the application down the road.
 
+For starters, I know I'm going to need:
 
+1. A model with column-referencing attributes, so I can call something like `game.date_time` and get back the date/time for that particular `Game` instance.
+
+Based on the CSV lesson we just did, I'll probably want to call methods on instances _and_ their classes. Something like:
+
+```ruby
+Games.all
+Games.order_by(:date_time)
+
+game.teams
+game.home_goals
+```
+
+etc. 
+
+Of course I'll need to write tests against those classes, because the non-TDD way I did the CSV lesson was _so painful and difficult_. We'll use real-world test-writing, and use it in such a way that it makes our lives _dramatically easier_. 
+
+I don't have to worry too much about the long-term growth of this application, since I know at minimum a little about the stuff I'll do with `Games`. I'll just set that up next time I sit down, and I'll share the progress with you.
+
+[]
 
 
