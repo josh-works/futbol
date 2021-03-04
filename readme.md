@@ -347,4 +347,12 @@ Here's what I've got... lets get it to run!
 
 oh, yeah, requires are wrong. Lets peek at some existing test file somewhere...
 
-And added a little front-matter in commit []()
+And added a little front-matter in commit [3a64799](3a64799)
+
+OK, test runs, now it gets an error, which... is to be expected.
+
+(by the way, we're starting with some naïve initialization in a moment, I'll refactor down the road, according to the amazing book `Practical Object Oriented Design in Ruby`).
+
+And the test passes:
+
+[()]
