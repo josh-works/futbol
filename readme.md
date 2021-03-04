@@ -245,6 +245,37 @@ you can do `open data/game_teams.csv` to open the CSV up in your local CSV-readi
 Add and commit it
 ---------------
 
+## File I/O
+
+This is the "hint" you get next:
+
+```ruby
+# runner.rb
+require './lib/stat_tracker'
+
+game_path = './data/games.csv'
+team_path = './data/teams.csv'
+game_teams_path = './data/game_teams.csv'
+
+locations = {
+  games: game_path,
+  teams: team_path,
+  game_teams: game_teams_path
+}
+
+stat_tracker = StatTracker.from_csv(locations)
+
+require 'pry'; binding.pry
+```
+
+This is a big leap. I mean... it makes some sense to me, but it's a rough way to start the project. 
+
+Why not try running it? I know it's not going to work, we've not created the `StatTracker` class, nor written a `from_csv` method. 
+
+So, lets do that...
+
+
+
 
 
 
