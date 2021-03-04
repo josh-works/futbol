@@ -15,6 +15,9 @@ I'm building this resource with several goals and related constraints in mind:
 - do this _quickly_. for a variety of reasons, I'm working on "shipping quickly"
 - advance the state of current Turing students who avail themselves of this resource, _even if it's while they're doing the Futbol project_
 - be accessible enough that someone who isn't even _in_ Turing could follow along, and probably gain some useful knowledge along the way. At minimum they'd get a laugh from at least one or two gifs ahead.
+- Be "advanced" enough that someone who's about the level of a Turing grad a few months (or a year) out of Turing will still glean things of value. 
+- Exemplify design considerations expressed in the various Ruby books I have lying around.
+- Learn some super useful things about exploring in Git how files evolve over time.
 
 
 ### Constraints
@@ -23,6 +26,7 @@ I'm building this resource with several goals and related constraints in mind:
 - I desire to "follow the path of most value", and I plan on this resource or a related resource to some day convey the kind of learning in a short enough time that people would plausibly spend non-trivial resources to learn more from. 
 - I've been typing for 10 minutes and I'm hoping to have at least some of this project done in the next 30 minutes
 - My wife and I are pretty busy today. It's also relevant how much income I bring in. I'm a husband, future father, neighbor, homeowner, etc. I've got lots of competing demands on my time, and I hope to not waste _your_ time that you might spend on this resource with me, no matter how you busy you are or are not. 
+- I'm open to sinking a dozen-plus hours into this guide (and I'm well on my way to that commitment) as long as the result is _world class_. Ideally, resources like this will lead to people like _you_, who work for companies that have external learning budgets, spending your money sponsoring more guides like this: [https://github.com/sponsors/josh-works/](https://github.com/sponsors/josh-works/). (If you dig this guide and don't have access to Other People's Money, consider sponsoring me at $1/mo. It's useful signaling behavior to me, makes it easier for me to rustle up corporate sponsors. Your $1/mo makes it easier for me to get $3k/mo from BIG_SOFTWARE_CORP down the road.)
 
 ---------------
 
