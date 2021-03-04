@@ -915,4 +915,134 @@ Phew. Here's the code now: `1c452c6`. I could refactor this, but... I don't real
 
 I ought to pull the lists into a widely accessible function, so people could still write strings, like `"black non hispanic"` and have the code operate as if they'd given `:black_non_hispanic`.
 
-I renamed some things: 
+I renamed some things: `6a09d63`
+
+---------------
+
+Let's re-run the "tests" and see how things look... (but convert the ethnicity values to symbols first)
+
+```ruby
+pp "Name.where(year: '2011')"
+pp Name.where(year: "2011").count
+
+pp "ethnicity"
+pp Name.where(ethnicity: :asian_and_pacific_islander).count
+
+
+pp "year & ethnicity"
+pp "Name.where(year: '2011', ethnicity: :asian_and_pacific_islander)"
+pp Name.where(year: "2011", ethnicity: :asian_and_pacific_islander).count
+
+pp "all names"
+pp Name.find_by_name("Eduardo")
+
+
+pp "2012 & api"
+pp Name.where(year: "2012", ethnicity: :asian_and_pacific_islander).count
+
+pp "api & 2012"
+pp Name.where(ethnicity: :asian_and_pacific_islander, year: "2012").count
+
+pp "hispanic & 2011"
+pp Name.where(ethnicity: :hispanic, year: "2011").count
+
+pp "hispanic & 2011 & geraldine"
+pp Name.where(ethnicity: :hispanic, year: "2011", name: "geraldine").count
+
+```
+
+Results are... long, but critically, the counts look good:
+
+```
+@rank="97",
+@year="2015">,
+#<Name:0x00007fd299cde290
+@bio_gender="male",
+@count="21",
+@ethnicity=:hispanic,
+@name="eduardo",
+@rank="80",
+@year="2016">]
+"2012 & api"
+1051
+"api & 2012"
+1051
+"hispanic & 2011"
+1846
+"hispanic & 2011 & geraldine"
+3
+```
+
+Look at that _last_ query, in particular. There's only three results. Lets drill into that one:
+
+```ruby
+
+pp ":hispanic & '2011' & 'geraldine'"
+pp Name.where(ethnicity: :hispanic, year: "2011", name: "geraldine")
+```
+
+Boom. It's perfect:
+
+```
+ruby csv_exploration_lesson/name.rb
+"hispanic & 2011 & geraldine"
+[#<Name:0x00007fc26ca3d988
+  @bio_gender="female",
+  @count="13",
+  @ethnicity=:hispanic,
+  @name="geraldine",
+  @rank="75",
+  @year="2011">,
+ #<Name:0x00007fc26e80ed40
+  @bio_gender="female",
+  @count="13",
+  @ethnicity=:hispanic,
+  @name="geraldine",
+  @rank="75",
+  @year="2011">,
+ #<Name:0x00007fc26dc9b2b0
+  @bio_gender="female",
+  @count="13",
+  @ethnicity=:hispanic,
+  @name="geraldine",
+  @rank="75",
+  @year="2011">]
+```
+
+## `Name#order` with multiple parameters
+
+I'm reading through [How to use sort_by to sort by multiple parameters in Ruby](https://allenan.com/how-to-use-sort_by-to-sort-by-multiple-parameters-in-ruby/). This is a trivial operation in Rails, but I didn't remember off the top of my head how to do it in Ruby.
+
+I assumed `sort_by` could take multiple arguments, but the docs didn't indicate that. Looks like it _can_ take multiple arguments.
+
+This is easy to do. To set it up, open up a pry session here, and in the editor:
+
+```ruby
+all_names.sort_by {|n| n.year }.take(5)
+=> [#<Name:0x00007fbd79ece008 @bio_gender="male", @count="34", @ethnicity=:white_non_hispanic, @name="victor", @rank="73", @year="2011">,
+ #<Name:0x00007fbd79ecf548 @bio_gender="male", @count="41", @ethnicity=:white_non_hispanic, @name="tzvi", @rank="66", @year="2011">,
+ #<Name:0x00007fbd79ed4020 @bio_gender="male", @count="61", @ethnicity=:white_non_hispanic, @name="tyler", @rank="53", @year="2011">,
+ #<Name:0x00007fbd79ed4b38 @bio_gender="male", @count="24", @ethnicity=:white_non_hispanic, @name="tristan", @rank="83", @year="2011">,
+ #<Name:0x00007fbd79ed55d8 @bio_gender="male", @count="24", @ethnicity=:white_non_hispanic, @name="timothy", @rank="83", @year="2011">]
+```
+
+Cool. Now lets try a second argument:
+
+```ruby
+all_names.sort_by {|n| [n.year, n.name] }.take(5)
+=> [#<Name:0x00007fbd7aaf8a90 @bio_gender="female", @count="63", @ethnicity=:hispanic, @name="aaliyah", @rank="30", @year="2011">,
+#<Name:0x00007fbd79f67ed8 @bio_gender="female", @count="63", @ethnicity=:hispanic, @name="aaliyah", @rank="30", @year="2011">,
+#<Name:0x00007fbd7a223ed8 @bio_gender="female", @count="63", @ethnicity=:hispanic, @name="aaliyah", @rank="30", @year="2011">,
+#<Name:0x00007fbd7a82d6d0 @bio_gender="female", @count="69", @ethnicity=:black_non_hispanic, @name="aaliyah", @rank="5", @year="2011">,
+#<Name:0x00007fbd7a180da0 @bio_gender="female", @count="69", @ethnicity=:black_non_hispanic, @name="aaliyah", @rank="5", @year="2011">]
+```
+
+Well, that was easy. Why don't the docs say `sort_by` can take multiple arguments? Sigh. 
+
+Let's work this into our method, then...
+
+Eh, I'm tired of this. `#sort` can now sort on two parameters (but no more than that), it has no error checking, but it woooorks. 
+
+I'm done. Ready to take on the `futbol` project, after an _enormous_ break. 
+
+Here's the commit: ``

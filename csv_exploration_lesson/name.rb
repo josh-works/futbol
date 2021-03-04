@@ -106,42 +106,27 @@ class Name
   end
   
   def self.order(query)
-    sort_by = query.keys.first
-    direction = query[sort_by].downcase
-    asc_sorted = all_names.sort_by do |name|
-      name.send(sort_by)
-    end
-    asc_sorted.reverse! if direction == :desc
+    sort_by = query.keys
     
-    asc_sorted
+    if query.count == 1
+      direction = query[sort_by].downcase
+      asc_sorted = all_names.sort_by do |name|
+        [name.send(sort_by[0])]
+      end
+      asc_sorted.reverse! if direction == :desc  
+      asc_sorted
+    end
+    
+    if query.count == 2 # ugggh this is ugly and doesn't handle
+      # sort direction at all, but I'm way over this project so
+      # hanging up my hat here. 
+      sort_by = query.keys
+      all_names.sort_by do |name|
+        [name.send(sort_by.first), name.send(sort_by.last)]
+      end
+    end
   end
 end
 
-# pp "Name.where(year: '2011')"
-# pp Name.where(year: "2011").count
-# 
-# pp "ethnicity"
-# pp Name.where(ethnicity: "asian and pacific islander").count
-# 
-# 
-# pp "year & ethnicity"
-# pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
-# pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
-
-pp "all names"
-pp Name.find_by_name("Eduardo")
-
-
-pp "2012 & api"
-pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count
-
-pp "api & 2012"
-pp Name.where(ethnicity: "asian and pacific islander", year: "2012").count
-
-pp "hispanic & 2011"
-pp Name.where(ethnicity: "HISPANIC", year: "2011").count
-
-pp "hispanic & 2011 & geraldine"
-pp Name.where(ethnicity: "HISPANIC", year: "2011", name: "geraldine").count
-
-
+pp "Name#order"
+pp Name.order(ethnicity: :asc, name: :asc).take(5)
