@@ -1,5 +1,6 @@
 require 'csv'
 require 'pry'
+require 'active_support/core_ext/string/inflections'
 
 class Name
   attr_reader :year, :bio_gender, :ethnicity, :name, :count, :rank
@@ -8,10 +9,26 @@ class Name
   def initialize(data)
     @year = data[:year_of_birth]
     @bio_gender = data[:gender].downcase
-    @ethnicity = data[:ethnicity].downcase
+    @ethnicity = standardize_ethnicity(data[:ethnicity])
     @name = data[:childs_first_name].downcase
     @count = data[:count]
     @rank = data[:rank]
+  end
+  
+  def standardize_ethnicity(ethnicity)
+    ethnicity = ethnicity.downcase.parameterize(separator: '_').to_sym
+    valid_ethnicities = %i[
+      black_non_hispanic
+      asian_and_pacific_islander
+      white_non_hispanic
+      hispanic
+    ].map(&:to_sym)
+    
+    if valid_ethnicities.include?(ethnicity)
+      ethnicity
+    elsif
+      raise "Invalid Name Ethnicity: #{ethnicity}"
+    end
   end
   
   def self.all_names
@@ -54,7 +71,6 @@ class Name
     query.each do |q|
       results << select_by_query(q)
     end
-    require "pry"; binding.pry
     intersection_of_query_results(results)
   end
   
@@ -103,6 +119,10 @@ end
 # pp "year & ethnicity"
 # pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
 # pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
+
+pp "all names"
+pp Name.find_by_name("Eduardo")
+
 
 pp "2012 & api"
 pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count

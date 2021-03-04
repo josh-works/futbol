@@ -845,10 +845,48 @@ Now's a great time to add _another_ feature, which is something akin to "query n
 
 I'm going to add a function that "cleans" the data as Ruby reads the CSV, and normalizes it. 
 
-I'll commit what I've got now, in commit ``
+I'll commit what I've got now, in commit `9b7d723`
 
 ------------------------
 
 Here's how I'm going to do this:
 
+![refactor on write](/images/2021-03-04-at-9.48-AM-the-refactor-plan.jpg)
 
+OK, this has turned into a bit more code than I'd hoped for. Here's where I'm at right now, for the `standardize_ethnicity` method:
+
+```ruby
+require 'active_support/core_ext/string/inflections'
+
+# skipping some stuff
+
+class Name
+  attr_reader :year, :bio_gender, :ethnicity, :name, :count, :rank
+  @@filename = 'csv_exploration_lesson/popular_baby_names.csv'
+  
+  def initialize(data)
+    # skipping stuff
+    @ethnicity = standardize_ethnicity(data[:ethnicity])
+		# skipping stuff
+  end
+  # 
+	def standardize_ethnicity(ethnicity)
+		ethnicity = ethnicity.downcase.parameterize(separator: '_').to_sym
+		valid_ethnicities = %i[
+			black_non_hispanic
+			asian_and_pacific_islander
+			white_non_hispanic
+			hispanic
+		]
+		
+		if valid_ethnicities.include?(ethnicity)
+			ethnicity
+		else
+			raise "Invalid Name Ethnicity: #{ethnicity}"
+		end
+		# skipping stuff
+```
+
+I decided I wanted to parameterize the ethnicity. "WHITE NON HISPANIC" is just a pain to pass around when doing queries. 
+
+I also have some invalid ethnicities, so I need to handle them one-off
