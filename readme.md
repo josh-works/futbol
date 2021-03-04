@@ -136,7 +136,7 @@ The above committed in `1f15647`
 
 ## Let's set this thing up...
 
-OH! Forgot to mention... I'm about 20 minutes into beginning this project. Most of that time has been writing the above "outline" of everything. After the last commit on march 2, I was out of the house for the evening, having a covid-safe outdoor dinner with some friends in Denver.
+OH! Forgot to mention... I'm about 20 minutes into beginning this project, 2021-03-02. Most of that time has been writing the above "outline" of everything. After the last commit on march 2, I was out of the house for the evening, having a covid-safe outdoor dinner with some friends in Denver.
 
 The commit logs will show "wall time" that's elapsed as I've completed this project, but I'll be carefully tracking how much time I spend actually _implementing_ this project. So far, we've not really begun any implementation besides setting up an empty git repo, adding a `readme.md`, and a folder for images.
 
