@@ -518,6 +518,8 @@ Took a few minutes, and quite a bit of playing around with the code. Here's what
     
     all_names.select do |name|
       name.send(find_by) == criteria
+      # look up what the #send method does to understand this line of code
+      # and absolutely stick a pry in here to explore it yourself. 
     end
   end
 # skipping this part
@@ -536,4 +538,28 @@ pp Name.where(rank: "1")
 
 There's a lot going on in this method. I mis-labeled some of the attributes that I was searching for, and was getting back errors. (`bio_gender`, not `gender`, for instance.)
 
-Here's the commit. 
+Here's the commit: `3d72b76`
+
+Reading ahead, looks like this commit passes items 4, 5, 6, 7
+
+### Question 8: `self.order` returns sorted data
+
+Looks like we'll want to be able to do something like:
+
+
+```ruby
+Name.order( year: :asc)
+Name.order( year: :desc)
+```
+
+`asc` and `desc` are long-standing programming jargon terms for "ascending" and "descending" order. I often forget which is which, so I'll just punch in `asc` on a query, see if the desired result comes back, if not, I'll flip it to `desc`, try it again, and hope it works. It often does. You should be more methodical than I am and actually think about what "ascending" and "descending" means.
+
+-------------------
+
+Sidebar - I'm now about two hours into this guide from when I sat down this morning. Much of the time has been explaining in detail each step I've taken. 
+
+My goal is, when _you_ have worked through this resource, you'll have a good idea of how to `query collections of data`. We'll use the data/mental models we're building in this lesson quite often in the Futbol project. 
+
+Even I am building up "new" knowledge in working through this lesson. Most of it is coming easily to me, some of this is requiring a little digging around. If you consider yourself to be "struggling" to keep up, don't. Just move slower, find what's complicated, play with the code in pry, experiment with building it up yourself, and if still stuck, DM me or ask in the `#ruby-exercises` channel at Turing. 
+
+-----------------
