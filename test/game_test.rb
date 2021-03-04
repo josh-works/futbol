@@ -1,6 +1,7 @@
-# require some stuff...
-
-# require the classes in minitest syntax
+gem 'minitest', '~> 5.2'
+require 'minitest/autorun'
+require 'minitest/pride'
+require './lib/game.rb'
 
 class GameTest < Minitest::Test
   def setup

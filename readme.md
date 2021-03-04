@@ -343,4 +343,8 @@ I'll feed the data in probably as a comma-separated list, for now, so I'd call (
 data = "2012030221,20122013,Postseason,5/16/13,3,6,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
 Game.new(data)
 ```
+Here's what I've got... lets get it to run!
 
+oh, yeah, requires are wrong. Lets peek at some existing test file somewhere...
+
+And added a little front-matter in commit []()
