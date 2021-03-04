@@ -52,21 +52,33 @@ class Name
   def self.where(query)
     results = []
     query.each do |q|
-      find_by = q.first
-      criteria = q.last
-      query_output = all_names.select do |name|
-        name.send(find_by) == criteria
-      end
-      results << query_output
+      results << select_by_query(q)
     end
+    require "pry"; binding.pry
+    intersection_of_query_results(results)
+  end
+  
+  def self.intersection_of_query_results(results)
+    return results.flatten if results.count == 1
     
-    if results.count == 2
+    case results.count
+    when 2
       results = results[0] & results[1]
-    else
-      results.flatten!
+    when 3
+      results = results[0] & results[1] & results[2]
+    when 4
+      results = results[0] & results[1] & results[2] & results[3]
     end
     
-    results
+    results.flatten
+  end
+  
+  def self.select_by_query(q)
+    find_by = q.first
+    criteria = q.last
+    all_names.select do |name|
+      name.send(find_by) == criteria
+    end
   end
   
   def self.order(query)
@@ -81,15 +93,27 @@ class Name
   end
 end
 
-pp "stage 1, making sure Name.where works with 1 param"
-pp Name.where(year: "2011").count
-pp Name.where(ethnicity: "asian and pacific islander").count
+# pp "Name.where(year: '2011')"
+# pp Name.where(year: "2011").count
+# 
+# pp "ethnicity"
+# pp Name.where(ethnicity: "asian and pacific islander").count
+# 
+# 
+# pp "year & ethnicity"
+# pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+# pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
 
-
-pp "stage 2:"
-pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
-pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
+pp "2012 & api"
 pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count
 
+pp "api & 2012"
+pp Name.where(ethnicity: "asian and pacific islander", year: "2012").count
+
+pp "hispanic & 2011"
+pp Name.where(ethnicity: "HISPANIC", year: "2011").count
+
+pp "hispanic & 2011 & geraldine"
+pp Name.where(ethnicity: "HISPANIC", year: "2011", name: "geraldine").count
 
 

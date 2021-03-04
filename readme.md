@@ -788,3 +788,67 @@ Let's refactor this a bit. Here's my refactoring "plan":
 
 ![not good code](/images/2021-03-04-at-9.25-AM-refactor-plan.jpg)
 
+Commit `717cc9f`
+
+------------------------
+
+Here's the diff of the first refactor:
+
+```diff
+diff --git a/csv_exploration_lesson/name.rb b/csv_exploration_lesson/name.rb
+index afd6539..9bf4ac3 100644
+--- a/csv_exploration_lesson/name.rb
++++ b/csv_exploration_lesson/name.rb
+@@ -52,12 +52,7 @@ def self.count_by_year
+   def self.where(query)
+     results = []
+     query.each do |q|
+-      find_by = q.first
+-      criteria = q.last
+-      query_output = all_names.select do |name|
+-        name.send(find_by) == criteria
+-      end
+-      results << query_output
++      results << select_by_query(q)
+     end
+
+     if results.count == 2
+@@ -69,6 +64,14 @@ def self.where(query)
+     results
+   end
+
++  def self.select_by_query(q)
++    find_by = q.first
++    criteria = q.last
++    all_names.select do |name|
++      name.send(find_by) == criteria
++    end
++  end
++
+```
+
+I created a `select_by_query` method, and moved the code down there. Now, inside of `query.each` I just make a method call, shoveling the results into my `results` array. 
+
+Next, lets make it work with multiple selections...
+
+OK, now it _seems_ to work with multiple selections. Time to test it. Here's the refactor. `Name#where` is _much_ cleaner now, though I don't love the case statement that I'm using:
+
+![refactor finished](/images/2021-03-04-at-9.37-AM-refactor-finished.jpg)
+
+This isn't... perfect, but it's absolutely good enough, once I test the function of the method a bit more.
+
+![crap data](/images/2021-03-04-at-9.43-AM-bad-data.jpg)
+
+Arg. Crap. The data encoded in 2012 is bad. I searched for `ASIAN AND PACIFIC ISLANDER`, but in 2012 that data is encoded as `ASIAN AND PACI` (line 3902 and beyond) so the query is coming back empty.
+
+Now's a great time to add _another_ feature, which is something akin to "query normalization", or "data normalization". 
+
+I'm going to add a function that "cleans" the data as Ruby reads the CSV, and normalizes it. 
+
+I'll commit what I've got now, in commit ``
+
+------------------------
+
+Here's how I'm going to do this:
+
+
