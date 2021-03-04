@@ -50,12 +50,23 @@ class Name
   end
   
   def self.where(query)
-    find_by = query.keys.first
-    criteria = query[find_by].downcase
-    
-    all_names.select do |name|
-      name.send(find_by) == criteria
+    results = []
+    query.each do |q|
+      find_by = q.first
+      criteria = q.last
+      query_output = all_names.select do |name|
+        name.send(find_by) == criteria
+      end
+      results << query_output
     end
+    
+    if results.count == 2
+      results = results[0] & results[1]
+    else
+      results.flatten!
+    end
+    
+    results
   end
   
   def self.order(query)
@@ -70,11 +81,15 @@ class Name
   end
 end
 
-pp "Name.order( year: :desc)"
-pp Name.order( year: :desc).first
-pp Name.order( year: :desc)[2..5]
+pp "stage 1, making sure Name.where works with 1 param"
+pp Name.where(year: "2011").count
+pp Name.where(ethnicity: "asian and pacific islander").count
 
-pp Name.order( year: :desc).last
+
+pp "stage 2:"
+pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
+pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count
 
 
 

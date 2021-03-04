@@ -596,3 +596,195 @@ pp Name.order( year: :desc)[2..5]
 pp Name.order( year: :desc).last
 ```
 
+------------
+
+This finishes the non-extension portion of the exercise. I happen to know that the Futbol project will make good use of more extensive queries, so I'm going to keep humming along and finish up all the extensions.
+
+For example, I want to be able to call:
+
+```ruby
+Name.where(year: "2011", ethnicity: "asian and pacific islander")
+```
+
+and get back all `Name` instances where these conditions apply. 
+
+Let's update the method to handle this...
+
+First, let's think through how this query could work.
+
+Query 1 could collect all 2011 names, and query 2 could grab all names that match on ethnicity.
+
+We'd have something like this:
+
+```ruby
+2011_names = Name.where(year: "2011")
+=> [Name1, Name2, Name3]
+api_names = Name.where(ethnicity: "asian and pacific islander")
+=> [Name3, Name4, Name5]
+```
+
+Lets say `Name3` is the only name that exists in both sets. We'd want to somehow return just the values that exist in both datasets. This is the "intersection" of these two "sets". Ruby has some handy methods to deal with sets, and values that exist in just one set, the other, or both, or neither.
+
+Basically, we'd be able to do something like:
+
+[... pardon me while I fire up a pry session and kick the tires...]
+
+![set intersection](/images/2021-03-04-at-9.03-AM-set-intersection.jpg)
+
+```ruby
+2011_names & api_names
+=> [Name3]
+```
+
+Suh-weet. We can keep adding `& other_array` to this, by the way, and keep winnowing down the results to only values that exist across all arrays.
+
+Lets build out this method now!
+
+First, we'll update the method to _iterate_ through each submitted query, and re-test that it still works on the "basic" single-query option. Looks like it does. Here's the current diff:
+
+```diff
+diff --git a/csv_exploration_lesson/name.rb b/csv_exploration_lesson/name.rb
+index 21b42f5..22ebbb2 100644
+--- a/csv_exploration_lesson/name.rb
++++ b/csv_exploration_lesson/name.rb
+@@ -50,12 +50,17 @@ def self.count_by_year
+   end
+
+   def self.where(query)
+-    find_by = query.keys.first
+-    criteria = query[find_by].downcase
+-
+-    all_names.select do |name|
+-      name.send(find_by) == criteria
++    results = []
++    query.each do |q|
++      find_by = q.first
++      criteria = q.last
++      query_output = all_names.select do |name|
++        name.send(find_by) == criteria
++      end
++      results << [query_output]
+     end
++
++    results.flatten
+   end
+```
+
+I'm testing with:
+
+```ruby
+
+pp "stage 1, making sure Name.where works with 1 param"
+pp Name.where(year: "2011").count
+pp Name.where(ethnicity: "asian and pacific islander").count
+
+
+pp "stage 2:"
+pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
+pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count
+```
+
+OK. This works OK with a single query, but it totally won't work with multiple queries. I'm not doing any set intersection stuff on the `results` array that I'm shoveling the query results into, and `flatten` obviously doesn't move me in that direction.
+
+Here's the output I got:
+
+```shell
+$ ruby csv_exploration_lesson/name.rb
+"stage 1, making sure Name.where works with 1 param"
+5863 # the count of 2011 names
+4071 # the count of asian/pacific islander names
+"stage 2:"
+"Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+9934 # this shows both _added together_, not the intersection of the two
+9930
+```
+
+Let's figure out how to take an array of arrays (aka, our `results` array) and do set-intersection of the sub-arrays.
+
+I'm thinking of the `results` array like so:
+```
+results = [[1, 2], [2, 3]]
+results[0] & results[1]
+=> [2]
+```
+
+First, I care of the results array has more than one sub-array:
+
+```ruby
+
+def self.where(query)
+	results = []
+	query.each do |q|
+		find_by = q.first
+		criteria = q.last
+		query_output = all_names.select do |name|
+			name.send(find_by) == criteria
+		end
+		results << [query_output] # this is wrong, remove the brackets, `select` returns an array, so this was creating a nested array, like:
+		# [[[name, name], [name, name, name]]] 
+		# instead of what I wanted, which was:
+		# [[name, name], [name, name, name]]
+	end
+	if results.count == 2
+		require "pry"; binding.pry # now I'll hit this pry only when `where` is used
+		# with multiple queries. Don't worry, I'll refactor later... 
+	else
+		results.flatten
+	end
+end
+```
+
+Sick. Making progress. Getting the desired results:
+
+```ruby
+def self.where(query)
+	results = []
+	query.each do |q|
+		find_by = q.first
+		criteria = q.last
+		query_output = all_names.select do |name|
+			name.send(find_by) == criteria
+		end
+		results << query_output
+	end
+	
+	if results.count == 2
+		results = results[0] & results[1]
+	else
+		results.flatten!
+	end
+	
+	results
+end
+
+# ...
+
+pp "stage 1, making sure Name.where works with 1 param"
+pp Name.where(year: "2011").count
+pp Name.where(ethnicity: "asian and pacific islander").count
+
+
+pp "stage 2:"
+pp "Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+pp Name.where(year: "2011", ethnicity: "asian and pacific islander").count
+pp Name.where(year: "2012", ethnicity: "asian and pacific islander").count
+```
+
+Which returns:
+
+```
+$ csv_exploration_lesson/name.rb
+"stage 1, making sure Name.where works with 1 param"
+5863
+4071
+"stage 2:"
+"Name.where(year: '2011', ethnicity: 'asian and pacific islander')"
+919
+0
+```
+
+Let's refactor this a bit. Here's my refactoring "plan":
+
+![not good code](/images/2021-03-04-at-9.25-AM-refactor-plan.jpg)
+
