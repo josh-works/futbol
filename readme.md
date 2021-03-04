@@ -188,7 +188,66 @@ Consider yourself warned...
 
 ## Manually create `lib` and `test` directories
 
-add a `.keep` to the inside - that lets the file get added to `git` and you can commit it:
+add a `.keep` to the inside - that lets the file get added to `git` and you can commit it: `ea02997`
+
+[ea02997](ea02997)
+
+## download and explore CSV files
+
+Download the CSVs, place them in a `data` directory.
+
+It's tricky to get these files. You can download [their directory](https://github.com/turingschool-examples/futbol/tree/main/data) using this [github file downloader](download-directory.github.io)
+
+[https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fturingschool-examples%2Ffutbol%2Ftree%2Fmain%2Fdata](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fturingschool-examples%2Ffutbol%2Ftree%2Fmain%2Fdata)
+
+Unzip the file, figure out how to get them in your `data` directory:
+
+```
+$ lr ~/Downloads | tail -10
+-rw-rw-rw-@   1    1.0M Feb 27 11:47 stendahl1963.pdf
+-rw-rw-rw-@   1    1.0M Feb 27 11:47 stendahl1963(1).pdf
+-rw-rw-rw-@   1     78K Feb 27 12:06 qGhC3pM2.rss
+-rw-r--r--@   1     98K Feb 27 14:44 .DS_Store
+-rw-rw-rw-@   1     19M Feb 28 18:33 The Needful Annihilation -Mark 8.mp3
+-rw-rw-rw-@   1    2.5M Mar  1 14:29 bloom-two-sigma(2).pdf
+-rw-rw-rw-@   1     76K Mar  1 17:27 Benefit-Summary-Red-Canary.pdf
+-rw-r--r--@   1    1.6M Mar  4 14:10 turingschool-examples futbol main data.zip
+drwx------@ 734     23K Mar  4 14:10 .
+drwxr-xr-x+ 162    5.1K Mar  4 14:16 ..
+```
+
+That bottom file is the one we want!
+
+```shell
+$ mv ~/Downloads/turingschool-examples\ futbol\ main\ data.zip ./data
+# tab complete is a lifesaver
+```
+
+Here's what it looks like:
+
+![download](/images/2021-03-04-at-2.17-PM-download-mv-data.jpg)
+
+`lr` in my terminal is aliased to "`ls` the files, but [R]everse the order based on most recently updated"
+
+The bottom entry, when calling `lr` is always the newest/most-recently-changed file/directory. It's quite handy.
+
+unzip the file. I know there's an `unzip` utility, not sure how to use it, so looking it up in `tldr`:
+
+
+![success](/images/2021-03-04-at-2.21-PM.jpg)
+
+then delete the `zip`.
+
+Now you've got the data in your `data` directory. Open up the CSVs, think about them for a minute.
+
+you can do `open data/game_teams.csv` to open the CSV up in your local CSV-reading application. 
+
+Add and commit it
+---------------
+
+
+
+
 
 
 
