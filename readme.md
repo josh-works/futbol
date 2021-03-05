@@ -620,4 +620,8 @@ Lets go build `GameTeam`!
 
 (BTW, I know I'm going to need a `Class.all` method for `Game`. You can build your own implementation of that now if you want. There's no "exactly correct" order to how to do all this.)
 
-So, outline my test, same as before. Update my `test_helper` to reference my new `game_team` class, and we have a passing test. 
+So, outline my test, same as before. Update my `test_helper` to reference my new `game_team` class, and we have a passing test. `ecd0275`
+
+A little more cleanup, anytime I have an `_id` attirbute, I can just coerce that string to an integer. In fact, most attibutes of `GameTeam` are integers (except for `#face_off_win_percentage` needs to be a `Float`), so lets do that...
+
+Update tests, update code, test still passes in commit ``

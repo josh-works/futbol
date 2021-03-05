@@ -32,6 +32,6 @@ class Game
   end
   
   def winner
-    # query game_teams to see who was the winner for the game with @game_id
+    GameTeam.winner_of_game(game_id)
   end
 end
