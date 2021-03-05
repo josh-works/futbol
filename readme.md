@@ -560,5 +560,9 @@ Lets try my other test, see how that looks...
 
 Ah, I need to coerce all `id`-like bits of data to an integer. I'll go ahead and update the tests and initialize to convert more stuff to integers... and the tests pass:
 
-``
+`8978149`
+
+Now lets add a `home_team` method (and test) and we're doing fine. Tests still pass.
+
+
 
