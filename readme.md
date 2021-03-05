@@ -833,3 +833,85 @@ TONS of `uninitialized constant` errors.
 I guess I'll just bite the bullet on the circular loading error, and accept the successful RSPEC output.
 
 Here's the commit: `51d564d`
+
+-------------------
+
+## Rolling out first stats
+
+So, I'm comfortable with my basic setup. I'll have my `StatTracker` make calls to `GameStat` class methods, and in the `GameStat` class I'll do the heavy lifting. 
+
+I'll write tests for all of it, and yes, it's a bit annoying that I'm kinda "duplicating" the tests in `StatTracker` and `GameStat`. I think we'll find out quickly that this is still a helpful process, so bear with me as I do it.
+
+Lemme brag on some copy-paste-terminal goodies.
+
+I just copied-pasted the _table_ from the spec into named-and-ready-to-go test methods, en-mass.
+
+I got from here:
+
+```
+lowest_total_score 	Lowest sum of the winning and losing teams’ scores 	Integer
+percentage_home_wins 	Percentage of games that a home team has won (rounded to the nearest 100th) 	Float
+percentage_visitor_wins 	Percentage of games that a visitor has won (rounded to the nearest 100th) 	Float
+percentage_ties 	Percentage of games that has resulted in a tie (rounded to the nearest 100th) 	Float
+count_of_games_by_season 	A hash with season names (e.g. 20122013) as keys and counts of games as values 	Hash
+average_goals_per_game 	Average number of goals scored in a game across all seasons including both home and away goals (rounded to the nearest 100th) 	Float
+average_goals_by_season 	Average number of goals scored in a game organized in a hash with season names (e.g. 20122013) as keys and a float representing the average number of goals in a game for that season as values (rounded to the nearest 100th) 	Hash
+```
+
+to here:
+
+```ruby
+class GameStatsTest < Minitest::Test
+  def test_highest_total_score
+    assert_equal 11, GameStats.highest_total_score
+  end
+  
+  ###############################
+  #       GAME STATISTICS       #
+  ###############################
+  def test_lowest_total_score
+    # Lowest sum of the winning and losing teams’ scores 	
+    # => Integer
+    
+  end
+
+  def test_percentage_home_wins
+    # Percentage of games that a home team has won (rounded to the nearest 100th) 	
+    # => Float
+    
+  end
+
+  def test_percentage_visitor_wins
+    # Percentage of games that a visitor has won (rounded to the nearest 100th) 	
+    # => Float
+    
+  end
+
+  def test_percentage_ties
+    # Percentage of games that has resulted in a tie (rounded to the nearest 100th) 	
+    # => Float
+    
+  end
+
+  def test_count_of_games_by_season
+    # A hash with season names (e.g. 20122013) as keys and counts of games as values 	
+    # => Hash
+    
+  end
+
+  def test_average_goals_per_game
+    # Average number of goals scored in a game across all seasons including both home and away goals (rounded to the nearest 100th) 	
+    # => Float
+    
+  end
+
+  def test_average_goals_by_season
+    # Average number of goals scored in a game organized in a hash with season names (e.g. 20122013) as keys and a float representing the average number of goals in a game for that season as values (rounded to the nearest 100th) 	
+    # => Hash
+    
+  end
+
+end
+```
+
+With just multi-cursor movement. Consider doing the same. It's helping me organize my tests _very_ cleanly.
