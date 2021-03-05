@@ -762,3 +762,13 @@ end
 ```
 
 But... I can create that class, and it can probably interface with my `Game` class fairly nicely. 
+
+------------
+
+OK, bunch of futzing around. Messing with requires, to keep my code well-organized.
+
+I've got a passing test (the first one) for my `GameStats` class:
+
+`ca21d0d`
+
+

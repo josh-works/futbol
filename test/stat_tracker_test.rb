@@ -7,6 +7,6 @@ class StatTrackerTest < Minitest::Test
   end
   
   def test_highest_total_score
-    assert_equal 32, @st.highest_total_score
+    assert_equal 11, @st.highest_total_score
   end
 end
