@@ -1,5 +1,3 @@
-require './lib/helper'
-
 class GameTeam
   extend DataLoader
   extend Finder

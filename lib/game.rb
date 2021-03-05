@@ -1,5 +1,3 @@
-require './lib/helper'
-
 class Game
   extend Finder
   extend DataLoader

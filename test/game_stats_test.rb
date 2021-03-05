@@ -1,8 +1,8 @@
 require './test/test_helper'
 
-class GameStatsTrackerTest < Minitest::Test
+class GameStatsTest < Minitest::Test
   def setup
-    @gst = GameStatsTracker.new
+    @gst = GameStats.new
   end
   
   def test_highest_total_score

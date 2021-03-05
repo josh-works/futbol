@@ -1,5 +1,3 @@
-require './lib/helper'
-
 class StatTracker
   def self.from_csv(locations)
     

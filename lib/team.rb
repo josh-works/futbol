@@ -1,5 +1,3 @@
-require './lib/helper'
-
 class Team
   extend Finder
   extend DataLoader
