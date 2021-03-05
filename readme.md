@@ -4,9 +4,9 @@ I've now worked with a number of Turing students on the [futbol](https://backend
 
 There's a few consistent spots that they tend to get stuck on, but I'm not familiar enough with the right solution to guide them to it.
 
-Also, I've always enjoyed re-writing Turing projects. They usually take a tiny fraction of the time they took me in Turing, and I gain an appreciation for design patterns I've read about in books like [Eloquent Ruby by Russ Owens (2011)](https://www.goodreads.com/book/show/9364729-eloquent-ruby?ac=1&from_search=true#) and Sandy Metz' famous [Practical Object-Oriented Design in Ruby](https://www.amazon.com/Practical-Object-Oriented-Design-Ruby-Addison-Wesley/dp/0321721330)
+Also, I've always enjoyed re-writing Turing projects. They usually take a tiny fraction of the time they took me in Turing, and I gain an appreciation for design patterns I've read about in books like [Eloquent Ruby by Russ Owens (2011)](https://www.goodreads.com/book/show/9364729-eloquent-ruby?ac=1&from_search=true#) and Sandy Metz' famous [Practical Object-Oriented Design in Ruby](https://www.amazon.com/Practical-Object-Oriented-Design-Ruby-Addison-Wesley/dp/0321721330), and of course [Refactoring: Ruby Edition](https://www.goodreads.com/book/show/11560939-refactoring) by Jay Fields.
 
-I'm building this resource with several goals and related constraints in mind:
+I'm building this resource with goals and constraints in mind:
 
 ### Goals
 
@@ -18,6 +18,7 @@ I'm building this resource with several goals and related constraints in mind:
 - Be "advanced" enough that someone who's about the level of a Turing grad a few months (or a year) out of Turing will still glean things of value. 
 - Exemplify design considerations expressed in the various Ruby books I have lying around.
 - Learn some super useful things about exploring in Git how files evolve over time.
+- Find opportunities for focused applications of Ruby/Object-Oriented Design best practices. I've no doubt I'll make some sub-optimal implementations, and in time (maybe weeks/months from now) I'll read about some refactoring pattern, and I'll find a way to implement it in this project.
 
 
 ### Constraints
@@ -358,3 +359,6 @@ And the test passes:
 [4494178](4494178)
 
 Break time for me! Been a long day. I'm glad that I'm finally getting to write some of the code on this project, though!
+
+----------------------
+
