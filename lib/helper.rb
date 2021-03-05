@@ -1,12 +1,12 @@
 require 'csv'
 
 # module requirements first
-require './lib/modules/finder'
-require './lib/modules/data_loader.rb'
+require_relative './modules/finder'
+require_relative './modules/data_loader.rb'
 
 # requiring all individual classes
-require './lib/game'
-require './lib/team'
-require './lib/game_team'
-require './lib/game_stats'
-require './lib/stat_tracker'
+require_relative './game'
+require_relative './team'
+require_relative './game_team'
+require_relative './game_stats'
+require_relative './stat_tracker'

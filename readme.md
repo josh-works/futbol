@@ -771,4 +771,49 @@ I've got a passing test (the first one) for my `GameStats` class:
 
 `ca21d0d`
 
+and refactored a bit more to make _all_ tests pass, with the usage of `rake`:
 
+`ea56f01`
+
+----------
+
+## Getting the spec harness to run to validate that I'm doing anything even loosely correct
+
+So, I have to use [this spec harness](https://github.com/turingschool-examples/futbol_spec_harness) to provide external evaluation of my code.
+
+It can be a total PITA to set up, so let me walk you through it...
+
+```shell
+cd .. # this gets you one directory "up" from your `futbol` repo
+git clone 
+git@github.com:turingschool-examples/futbol_spec_harness.git
+```
+
+Now when you `ls` you should both `futbol_spec_harness` and `futbol` directories
+
+```shell
+cd futbol_spec_harness
+atom . # to explore it, just for the heck of it. 
+bundle # installs all dependencies
+```
+
+Run the tests with:
+
+```shell
+rspec
+```
+
+Now, it failed, all over the place. No sweat, I have to change `require` statements in my futbol repo. 
+
+It better not eff with my tests I'm running locally....
+
+Everywhere I have the following:
+
+```
+require './lib/...'
+```
+
+I'll change it to `require_relative ./...`
+
+
+Commit showing the changes: 
