@@ -27,4 +27,9 @@ class GameTeamTest < Minitest::Test
     assert_instance_of Integer, @gt.giveaways
     assert_instance_of Integer, @gt.takeaways
   end
+  
+  def test_find_returns_game_team_by_id
+    gt = GameTeam.find(2012030221)
+    assert_equal gt, @gt
+  end
 end
