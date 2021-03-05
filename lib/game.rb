@@ -22,4 +22,8 @@ class Game
     @venue        = data[8]
     @venue_link   = data[9]
   end
+  
+  def away_team
+    Team.find(away_team_id)
+  end
 end

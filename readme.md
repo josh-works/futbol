@@ -407,5 +407,35 @@ So, back to my `Game` class, to figure out how to get `game.home_team` to return
 
 ## "Wiring Together" the Game and the Team
 
-Currently, running the test, I get `Uninitialized Constant Team`. Let's add another `require` statement, but this time we're going to introduce a "test helper" file. This file will contain all necessary require statements and gems, and we'll simply require it from each additional test file we might create. Here's what it looks like:
+Currently, running the test, I get `Uninitialized Constant Team`. Let's add another `require` statement, but this time we're going to introduce a "test helper" file. This file will contain all necessary require statements and gems, and we'll simply require it from each additional test file we might create. Go look at this specific commit:
+
+`c62ddd4`
+
+It'll save you a lot of hassle down the road. This also solves our `Uninitialized Constant` problem - now we're getting `undefined method`, because there is no `away_team` method. Lets add it:
+
+```ruby
+def away_team
+	# ??? What goes here???
+end
+```
+
+We want a `Team` object back, and based on the CSV lesson we just did, we know we could do something like `Class.find(id)` and expect to find an instance of that class, with that ID.
+
+How might you write this?
+
+I used: 
+
+```ruby
+def away_team
+	Team.find(away_team_id)
+end
+```
+
+Remember - this isn't going to pass this test _at all_! I've not created a `Team#find` method on the `Teams` class, but I know I have an `away_team_id` available to this `Game` class, so... I'm good with this. I'll let this method drive me back towards writing code in the team class...
+
+When I run the tests, I get:
+
+```
+NoMethodError: undefined method `find' for Team:Class
+```
 
