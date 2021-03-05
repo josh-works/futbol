@@ -6,6 +6,6 @@ class GameStatsTest < Minitest::Test
   end
   
   def test_highest_total_score
-    assert_equal 32, @gst.highest_total_score
+    assert_equal 11, @gst.highest_total_score
   end
 end
