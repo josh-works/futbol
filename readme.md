@@ -439,3 +439,41 @@ When I run the tests, I get:
 NoMethodError: undefined method `find' for Team:Class
 ```
 
+`b5ef633`
+
+## Adding Team.find()
+
+I added this test: 
+
+```ruby
+def test_find_class_method_finds_team_by_id
+	assert_instance_of Team, Team.find(1)
+end
+```
+
+Obviously, again, _it fails_ because I've not made it pass yet, but it tells me where to go.
+
+I don't know that a team with that ID exists, but I think it does, because of the `data` I'm feeding in on the setup. The id looks like `1`, so I'm going to expect this method to return that particular instance of a `Team`, eventually.
+
+Here's what I wrote in my `find` method:
+
+```ruby
+def self.find(id)
+	all_teams.find {|team| team.id == id }
+end
+```
+
+you might say:
+
+> Josh, where'd that `all_teams` thing come from?
+
+Good question. I've not written the method yet. When I run the tests, it'll throw an error about "all_teams", so lets _add a test_ for `all_teams`, and make it pass... (all the while, this test I just wrote, and the test in my `Game` class are still failing, this is fine, to be expected.)
+
+I've renamed it, I'm going to do `Team.all` (class method) instead of `all_teams` (a different class method). 
+
+[...]
+
+OK, we're getting a little complicated, writing a lot of small methods. Try to stick with me...
+
+Here's where I'm at:
+

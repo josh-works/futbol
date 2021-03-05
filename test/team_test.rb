@@ -15,4 +15,14 @@ class TeamTest < Minitest::Test
     assert @team.stadium
     assert @team.link
   end
+  
+  def test_find_class_method_finds_team_by_id
+    assert_instance_of Team, Team.find(1)
+  end
+  
+  def test_find_all_returns_all_teams
+    results = Team.all
+    assert_equal 1, results.count
+    assert_instance_of Team, results.first
+  end
 end

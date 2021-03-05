@@ -4,7 +4,8 @@ class Team
               :team_name,
               :abbreviation,
               :stadium,
-              :link
+              :link,
+              :all
               
   def initialize(data)
     @team_id = data[0]
@@ -13,5 +14,19 @@ class Team
     @abbreviation = data[3]
     @stadium = data[4]
     @link = data[5]
+  end
+  
+  def self.find(id)
+    Team.all.find {|team| team.id == id }
+  end
+  
+  def self.all
+    @all ||= load_teams_data
+  end
+  
+  private
+  
+  def self.load_teams_data
+    
   end
 end
