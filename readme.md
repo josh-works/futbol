@@ -817,3 +817,17 @@ I'll change it to `require_relative ./...`
 
 
 Commit showing the changes: 
+
+Sigh. So frustrating. I'm losing a lot of time trying to make both my local tests and the spec harness run without errors.
+
+Here's how I'm running the test:
+
+```shell
+$ rspec spec/stat_tracker_spec.rb:22
+```
+
+Appending `:22` to the command says run _just_ the test on that line, greatly reduces the output I have to scroll through.
+
+TONS of `uninitialized constant` errors. 
+
+I guess I'll just bite the bullet on the circular loading error, and accept the successful RSPEC output.
