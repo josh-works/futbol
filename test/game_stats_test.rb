@@ -11,7 +11,7 @@ class GameStatsTest < Minitest::Test
   def test_lowest_total_score
     # Lowest sum of the winning and losing teams’ scores 	
     # => Integer
-    assert_equal 11, GameStats.lowest_total_score
+    assert_equal 0, GameStats.lowest_total_score
   end
 
   def test_percentage_home_wins

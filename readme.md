@@ -915,3 +915,7 @@ end
 ```
 
 With just multi-cursor movement. Consider doing the same. It's helping me organize my tests _very_ cleanly.
+
+Here's what I've got, as I've finished outlining the tests. I'm not committing to any of them, but it will help me know where I'm going.
+
+commit `d232113`
