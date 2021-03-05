@@ -401,3 +401,11 @@ answer: uninitialized constant `Team`. Lets make it pass, but along the way, we'
 
 Adding a test - notice how I'm using `data` in the `setup` method - that string (critically) ends with `"".split(",")`, which allows me to take the first row of data from the `teams.csv`, copy-paste it in here, and split it into an array, ready to be "consumed" by my `initialization` method.
 
+This new test passes: `325feec`
+
+So, back to my `Game` class, to figure out how to get `game.home_team` to return a `Team` instance.
+
+## "Wiring Together" the Game and the Team
+
+Currently, running the test, I get `Uninitialized Constant Team`. Let's add another `require` statement, but this time we're going to introduce a "test helper" file. This file will contain all necessary require statements and gems, and we'll simply require it from each additional test file we might create. Here's what it looks like:
+
