@@ -10,12 +10,12 @@ class GameTest < Minitest::Test
     # game_id,season,type,date_time,away_team_id,home_team_id,
     # away_goals,home_goals,venue,venue_link
     # 
-    assert @game.game_id
+    assert_instance_of Integer, @game.game_id
     assert @game.season
     assert @game.type
     assert @game.date_time
-    assert @game.away_team_id
-    assert @game.home_team_id
+    assert_instance_of Integer, @game.away_team_id
+    assert_instance_of Integer, @game.home_team_id
     assert @game.away_goals
     assert @game.home_goals
     assert @game.venue

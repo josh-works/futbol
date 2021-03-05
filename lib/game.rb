@@ -11,12 +11,12 @@ class Game
               :venue_link
                
   def initialize(data)
-    @game_id      = data[0]
+    @game_id      = data[0].to_i
     @season       = data[1]
     @type         = data[2]
     @date_time    = data[3]
-    @away_team_id = data[4]
-    @home_team_id = data[5]
+    @away_team_id = data[4].to_i
+    @home_team_id = data[5].to_i
     @away_goals   = data[6]
     @home_goals   = data[7]
     @venue        = data[8]
