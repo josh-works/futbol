@@ -22,7 +22,7 @@ class TeamTest < Minitest::Test
   
   def test_find_all_returns_all_teams
     results = Team.all
-    assert_equal 1, results.count
+    assert_equal 32, results.count
     assert_instance_of Team, results.first
   end
 end

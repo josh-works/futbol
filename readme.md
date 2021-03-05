@@ -500,4 +500,55 @@ Lets run the tests, see how it looks.
 
 Ah, it needs the CSV class. I'll add a `require 'csv'` to the top of the file, though if you suspect we'll be using a helper file to handle all our requires soon... you'd be correct.
 
+Here's the current state of things: `8feb80d`
+
+When I run the tests, I have a failure and an error.
+
+Here's the failures:
+
+```
+$ ruby test/team_test.rb
+Run options: --seed 60717
+
+# Running:
+
+FE.
+
+Fabulous run in 0.002825s, 1061.9469 runs/s, 2477.8761 assertions/s.
+
+  1) Failure:
+TeamTest#test_find_all_returns_all_teams [test/team_test.rb:25]:
+Expected: 1
+  Actual: 32
+
+  2) Error:
+TeamTest#test_find_class_method_finds_team_by_id:
+NoMethodError: undefined method `id' for #<Team:0x00007fb4eb12cd78>
+    /Users/joshthompson/me/projects/futbol/lib/team.rb:24:in `block in find'
+    /Users/joshthompson/me/projects/futbol/lib/team.rb:24:in `each'
+    /Users/joshthompson/me/projects/futbol/lib/team.rb:24:in `find'
+    /Users/joshthompson/me/projects/futbol/lib/team.rb:24:in `find'
+    test/team_test.rb:20:in `test_find_class_method_finds_team_by_id'
+
+3 runs, 7 assertions, 1 failures, 1 errors, 0 skips
+```
+Now - I want you to take a moment and think about this, especially if you're getting the same errors.
+
+In some ways, this is _exactly what I expected_, and is easily fixed. In other ways, it's also telling me I mis-labeled some things. It's not a problem, but it's easily fixed.
+
+![do you see them](/images/2021-03-05-at-9.12-AM-spot-the-errors.jpg)
+
+I'm now loading 32 teams, not 1, so my assertion on line 25 is coming back as 32 instead of 1. (This is a good thing!)
+
+and I don't have a `team.id` attribute, I have a `team.team_id` attribute. Update the code and... my `find` is still broken.
+
+Ah, it's because I'm saving `team_id` as a string, not an integer.
+
+These are different:
+```
+"1"
+1
+```
+
+I'll update my initialization method to convert the `team_id` to an integer, and all passes:
 

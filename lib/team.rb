@@ -12,7 +12,7 @@ class Team
   
               
   def initialize(data)
-    @team_id = data[0]
+    @team_id = data[0].to_i
     @franchise_id = data[1]
     @team_name = data[2]
     @abbreviation = data[3]
@@ -21,7 +21,7 @@ class Team
   end
   
   def self.find(id)
-    Team.all.find {|team| team.id == id }
+    Team.all.find {|team| team.team_id == id }
   end
   
   def self.all
