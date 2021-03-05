@@ -36,13 +36,11 @@ class Game
   end
   
   def winner
-    # GameTeam.winner_of_game(game_id)
     return away_team if away_team_won?
     return home_team if home_team_won?
   end
   
   def loser
-    # GameTeam.winner_of_game(game_id)
     return away_team if !away_team_won?
     return home_team if !home_team_won?
   end

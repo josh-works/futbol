@@ -831,3 +831,5 @@ Appending `:22` to the command says run _just_ the test on that line, greatly re
 TONS of `uninitialized constant` errors. 
 
 I guess I'll just bite the bullet on the circular loading error, and accept the successful RSPEC output.
+
+Here's the commit: `51d564d`
