@@ -396,3 +396,8 @@ end
 This fails, of course... do you know why? Take a moment, think, why does this test fail, and _what specific error message will it generate_?
 
 answer: uninitialized constant `Team`. Lets make it pass, but along the way, we'll start a `team_test.rb` file too.
+
+`4b2f7bd`
+
+Adding a test - notice how I'm using `data` in the `setup` method - that string (critically) ends with `"".split(",")`, which allows me to take the first row of data from the `teams.csv`, copy-paste it in here, and split it into an array, ready to be "consumed" by my `initialization` method.
+
