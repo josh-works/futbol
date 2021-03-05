@@ -603,4 +603,21 @@ So, I'll write out a test in `game_test.rb`, and let that drive me towards deali
 
 ## Game#winner
 
+Outlined my (failing) test here: `24d447f`. 
 
+Now lets build a `game_teams` model. I'll need to be able to say, at minimum, something like:
+
+```ruby
+def winner
+	GameTeam.winner_of_game(game_id)
+end
+```
+and get back a `Team` object.
+
+----------
+
+Lets go build `GameTeam`!
+
+(BTW, I know I'm going to need a `Class.all` method for `Game`. You can build your own implementation of that now if you want. There's no "exactly correct" order to how to do all this.)
+
+So, outline my test, same as before. Update my `test_helper` to reference my new `game_team` class, and we have a passing test. 
