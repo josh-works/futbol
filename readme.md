@@ -665,4 +665,31 @@ Here's what it looks like:
 
 ![alias method](/images/2021-03-05-at-11.09-AM-alias-method.jpg)
 
-And the commit:
+And the commit: `afbeca3`
+
+-------------
+
+Let's take a look at the spec. I've not looked in a while. I could "garden" a bit more here. For example, I'll probably need the following methods:
+
+```ruby
+GameTeam.all
+GameTeam.find(game_team_id)
+
+Game.all
+Game.find(game_id)
+
+Team.all
+Team.find(team_id)
+```
+
+This is a good spot to use a `Module` to enable this funcionality across all three classes without duplicating a bunch of code. I'll go ahead an add this, so you can get a feel for how it could work. First, lets add tests to all three classes that prove that this functionality will exist.
+
+I've added failing tests here: `6ac30c6`
+
+I already have this method in the `team_test` class, so I didn't add anything there.
+
+OK, refactored to use a `module` for `Team#find`. Took a minute of Googling to figure out how to include the module on line 5 in such a way that I stopped getting a `method not found` error for `Team#find`. Team "Extends" `Finder`, per [Add class methods and instance methods to class by including one Module](http://rubyblog.pro/2017/04/class-methods-and-instance-methods-by-including-one-module)
+
+
+
+

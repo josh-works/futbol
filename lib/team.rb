@@ -1,6 +1,8 @@
 require 'csv'
+require './lib/finder'
 
 class Team
+  extend Finder
   attr_reader :team_id,
               :franchise_id,
               :team_name,
@@ -21,10 +23,6 @@ class Team
   end
   
   alias_method :id, :team_id
-  
-  def self.find(id)
-    Team.all.find {|team| team.id == id }
-  end
   
   def self.all
     @all ||= load_teams_data
