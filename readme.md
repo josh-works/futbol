@@ -362,3 +362,37 @@ Break time for me! Been a long day. I'm glad that I'm finally getting to write s
 
 ----------------------
 
+## Starting OO design
+
+So, picking up with fleshing out the `Game` class.
+
+Already, I know I'm going to want to improve the initialization process. It's quite fragile right now, but I'll let future design considerations drive updates to the initialization method.
+
+For now, I know that when I create a new `game` instance, I can call:
+
+```ruby
+game.away_team_id
+```
+
+and get back an integer, like 15. That's the ID of an entry in `teams.csv`
+
+I don't want to just be passing around _integers_, I want to be able to get the _actual team_.
+
+So, I'll figure out how to be able to do:
+
+```ruby
+game.away_team
+```
+and it'll return an instance of the `Teams` class, corresponding to the underlying team. 
+
+Before doing this, of course, I'll need a bare `Teams` class, and an associated test. For now, though, I'm going to write an "aspirational" test in my `Game` class that guides me in the right direction:
+
+```ruby
+def test_away_team_returns_a_team_object
+  assert_instance_of Team, @game.away_team
+end
+```
+
+This fails, of course... do you know why? Take a moment, think, why does this test fail, and _what specific error message will it generate_?
+
+answer: uninitialized constant `Team`. Lets make it pass, but along the way, we'll start a `team_test.rb` file too.

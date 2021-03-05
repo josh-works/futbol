@@ -23,6 +23,9 @@ class GameTest < Minitest::Test
     assert @game.home_goals
     assert @game.venue
     assert @game.venue_link
-    
+  end
+  
+  def test_away_team_returns_a_team_object
+    assert_instance_of Team, @game.away_team
   end
 end
