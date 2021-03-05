@@ -1,8 +1,8 @@
-require 'csv'
-require './lib/finder'
+require './lib/helper'
 
 class Team
   extend Finder
+  extend DataLoader
   attr_reader :team_id,
               :franchise_id,
               :team_name,
@@ -23,17 +23,4 @@ class Team
   end
   
   alias_method :id, :team_id
-  
-  def self.all
-    @all ||= load_teams_data
-  end
-  
-  private
-  
-  def self.load_teams_data
-    rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
-    rows.map do |row|
-      Team.new(row)
-    end
-  end
 end

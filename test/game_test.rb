@@ -50,4 +50,9 @@ class GameTest < Minitest::Test
     game = Game.find(2012030221)
     assert_equal game.id, @game.id
   end
+  
+  def test_all_returns_all_games
+    games = Game.all
+    assert_equal 7441, games.count
+  end
 end

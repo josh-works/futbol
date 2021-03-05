@@ -1,6 +1,8 @@
 require './lib/helper'
 
 class GameTeam
+  extend DataLoader
+  extend Finder
   attr_reader :game_id,
               :team_id,
               :home_or_away,
@@ -16,7 +18,7 @@ class GameTeam
               :face_off_win_percentage,
               :giveaways,
               :takeaways
-              
+                
   def initialize(data)
     @game_id = data[0].to_i
     @team_id = data[1].to_i
@@ -38,16 +40,4 @@ class GameTeam
   def self.find_by_game_id(id)
     GameTeam.all.find {|gameteam| gameteam.game_id == id }
   end
-  
-  def self.all
-    @all ||= load_data
-  end
-  
-  def self.load_data
-    rows = CSV.read('data/game_teams.csv', headers: true, header_converters: :symbol)
-    rows.map do |row|
-      self.new(row)
-    end
-  end
-  
 end

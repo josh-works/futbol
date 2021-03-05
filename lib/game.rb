@@ -2,6 +2,7 @@ require './lib/helper'
 
 class Game
   extend Finder
+  extend DataLoader
   attr_reader :game_id,
               :season,
               :type,

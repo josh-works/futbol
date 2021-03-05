@@ -724,4 +724,8 @@ Now I've got no access to a method `all` for the class, so I'm going to add that
 
 OK, a bunch of code just happened. I undoubtedly made some leaps. Read the commits carefully. I've got a working version that passes all tests here:
 
+`e944702`
+
+and refactored some more...
+
 ``
