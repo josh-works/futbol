@@ -624,4 +624,33 @@ So, outline my test, same as before. Update my `test_helper` to reference my new
 
 A little more cleanup, anytime I have an `_id` attirbute, I can just coerce that string to an integer. In fact, most attibutes of `GameTeam` are integers (except for `#face_off_win_percentage` needs to be a `Float`), so lets do that...
 
-Update tests, update code, test still passes in commit ``
+Update tests, update code, test still passes in commit `ecf890f`
+
+-----------
+
+## Making all tests pass
+
+Back to trying to make... which test pass again?
+
+I know I have a failing test. I don't even remember what class it was in, though I could figure it out. Instead I'll run `rake`, to run all tests, and see which one(s) fail.
+
+OK, I need a `winner_of_game` method that takes a `game_id` and returns a `Team` object that represents the winner of that game...
+
+ooooh, crap. I don't need to call out to `GameTeam` from my `Game` class, the game knows who the winner is, based on the `home_goals` and `away_goals`. I can do logic on `self` and return the winning team....
+
+here's what I aspirationally typed into my `Game#winner` method:
+
+```ruby
+def winner
+	# GameTeam.winner_of_game(game_id)
+	return away_team if away_team_won?
+	return home_team if home_team_won?
+end
+```
+those `away_team_won?` and `home_team_won?` methods have not been written yet.
+
+OK, a little more code (lots of small, clearly-labeled methods) and we've got passing tests. Note the use of `private`, which denotes "these methods are not being tested". Saves me time of having to write more test code, and since these methods will never be "public" to other classes, it's... OK... to not test them. (er, this is a hot take, some people may strongly disagree. You're welcome to write this code however you want!)
+
+Why not add a `loser` method too, just for completeness. I could see it making code more readable!
+
+

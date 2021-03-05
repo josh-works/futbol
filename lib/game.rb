@@ -17,8 +17,8 @@ class Game
     @date_time    = data[3]
     @away_team_id = data[4].to_i
     @home_team_id = data[5].to_i
-    @away_goals   = data[6]
-    @home_goals   = data[7]
+    @away_goals   = data[6].to_i
+    @home_goals   = data[7].to_i
     @venue        = data[8]
     @venue_link   = data[9]
   end
@@ -32,6 +32,24 @@ class Game
   end
   
   def winner
-    GameTeam.winner_of_game(game_id)
+    # GameTeam.winner_of_game(game_id)
+    return away_team if away_team_won?
+    return home_team if home_team_won?
+  end
+  
+  def loser
+    # GameTeam.winner_of_game(game_id)
+    return away_team if !away_team_won?
+    return home_team if !home_team_won?
+  end
+  
+  private
+  
+  def away_team_won?
+    away_goals > home_goals
+  end
+  
+  def home_team_won?
+    home_goals > away_goals
   end
 end

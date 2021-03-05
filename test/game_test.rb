@@ -16,8 +16,8 @@ class GameTest < Minitest::Test
     assert @game.date_time
     assert_instance_of Integer, @game.away_team_id
     assert_instance_of Integer, @game.home_team_id
-    assert @game.away_goals
-    assert @game.home_goals
+    assert_instance_of Integer, @game.away_goals
+    assert_instance_of Integer, @game.home_goals
     assert @game.venue
     assert @game.venue_link
   end
@@ -31,6 +31,14 @@ class GameTest < Minitest::Test
   end
   
   def test_winner_returns_winning_team_object
-    assert_instance_of Team, @game.winner
+    winner = @game.winner
+    assert_instance_of Team, winner
+  end
+  
+  def test_loser_returns_losing_team_object
+    loser = @game.loser
+    winner = @game.winner
+    assert_instance_of Team, loser
+    refute_equal loser.team_id, winner.team_id
   end
 end
