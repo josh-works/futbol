@@ -39,6 +39,10 @@ class GameTest < Minitest::Test
     loser = @game.loser
     winner = @game.winner
     assert_instance_of Team, loser
-    refute_equal loser.team_id, winner.team_id
+    refute_equal loser.id, winner.id
+  end
+  
+  def test_alias_id_to_game_id
+    assert_equal @game.game_id, @game.id
   end
 end

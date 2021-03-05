@@ -653,4 +653,16 @@ OK, a little more code (lots of small, clearly-labeled methods) and we've got pa
 
 Why not add a `loser` method too, just for completeness. I could see it making code more readable!
 
+`cce5fd0`
 
+## Refactoring `game.game_id` to `game.id`, `team.team_id` to `team.id`
+
+now... I want to refactor this code a little. 
+
+Because I've used ActiveRecord, a lot, I'm a fan of being able to call `id` on objects and just... get their `id` back. Here's how to do that, without adding much code at all:
+
+Here's what it looks like:
+
+![alias method](/images/2021-03-05-at-11.09-AM-alias-method.jpg)
+
+And the commit:

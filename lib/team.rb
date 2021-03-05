@@ -20,8 +20,10 @@ class Team
     @link = data[5]
   end
   
+  alias_method :id, :team_id
+  
   def self.find(id)
-    Team.all.find {|team| team.team_id == id }
+    Team.all.find {|team| team.id == id }
   end
   
   def self.all

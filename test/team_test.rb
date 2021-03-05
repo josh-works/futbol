@@ -25,4 +25,8 @@ class TeamTest < Minitest::Test
     assert_equal 32, results.count
     assert_instance_of Team, results.first
   end
+  
+  def test_alias_team_id_to_id
+    assert_equal @team.id, @team.team_id
+  end
 end

@@ -23,6 +23,8 @@ class Game
     @venue_link   = data[9]
   end
   
+  alias_method :id, :game_id
+
   def away_team
     Team.find(away_team_id)
   end
