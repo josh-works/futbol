@@ -564,5 +564,33 @@ Ah, I need to coerce all `id`-like bits of data to an integer. I'll go ahead and
 
 Now lets add a `home_team` method (and test) and we're doing fine. Tests still pass.
 
+`7f75e86`
 
+----------------------------
 
+## Digression to rake files
+
+Now that we have two test files, while we often want to run a single test file, it would be nice to easily run _all_ of our test files, to make sure we didn't break something in another test file.
+
+We could run it manually like:
+
+```shell
+$ ruby test/game_test.rb
+# check results
+$ ruby test/team_test.rb
+# check results
+```
+
+That's a lot of typing, especially as the tests add up.
+
+In the repository it was expected that you use as a base for this project (I didn't, built it from scratch) there's a `Rakefile`. Check it out:
+
+[https://github.com/turingschool-examples/futbol/blob/main/Rakefile](https://github.com/turingschool-examples/futbol/blob/main/Rakefile)
+
+Bring that Rakefile over to your current project. The filename is `Rakefile` (not `rakefile`, or `Rakefile.rb`), and copy/paste that stuff into it. Now, in your terminal, type `rake` and it runs _all_ your tests. `rake` and `rake test` are the same.
+
+Here's how usage looks:
+
+![rakefile](/images/2021-03-05-at-9.31-AM-adding-rakefile.jpg)
+
+added it in this commit: 
