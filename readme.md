@@ -593,4 +593,14 @@ Here's how usage looks:
 
 ![rakefile](/images/2021-03-05-at-9.31-AM-adding-rakefile.jpg)
 
-added it in this commit: 
+added it in this commit: `ef93f3b`
+
+OK, next, even without looking at much other stuff in the spec, I know I'll want to know who won a particular game. 
+
+If I have a `game` instance, I need to be able to call `game.winner` and get a `Team` instance back. Bonus points if that team happens to be _the winner_ for that game. (brilliant, right?)
+
+So, I'll write out a test in `game_test.rb`, and let that drive me towards dealing with this `game_teams.csv`... stuff.
+
+## Game#winner
+
+

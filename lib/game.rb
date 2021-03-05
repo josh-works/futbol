@@ -30,4 +30,8 @@ class Game
   def home_team
     Team.find(home_team_id)
   end
+  
+  def winner
+    # query game_teams to see who was the winner for the game with @game_id
+  end
 end

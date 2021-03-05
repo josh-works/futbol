@@ -29,4 +29,8 @@ class GameTest < Minitest::Test
   def test_home_team_returns_a_team_object
     assert_instance_of Team, @game.away_team
   end
+  
+  def test_winner_returns_winning_team_object
+    assert_instance_of Team, @game.winner
+  end
 end
