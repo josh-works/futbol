@@ -728,4 +728,37 @@ OK, a bunch of code just happened. I undoubtedly made some leaps. Read the commi
 
 and refactored some more...
 
-``
+`eeb2df4`
+
+----------------------
+
+## StatTracker methods
+
+OK, there's a _ton_ of `StatTracker` methods we seem to need to do. 
+
+Let's take a stab at just outlining the _very first method_, beginning-to-end, with tests and such...
+
+```
+Game Statistics:
+highest_total_score | Highest sum of the winning and losing teams’ scores | Integer
+```
+
+OK. And they should be _instance methods_, not class methods. 
+
+I'm continuously trying to write "aspirational" code, so here's what I have in my StatTracker class. Notice that I don't have a `GameStats` class, and it certainly doesn't have the given method on it.
+
+```ruby
+require './helper'
+
+class StatTracker
+  def self.from_csv(locations)
+    
+  end
+  
+  def highest_total_score
+    GameStats.highest_total_score
+  end
+end
+```
+
+But... I can create that class, and it can probably interface with my `Game` class fairly nicely. 
