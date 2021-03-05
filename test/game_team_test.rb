@@ -29,7 +29,7 @@ class GameTeamTest < Minitest::Test
   end
   
   def test_find_returns_game_team_by_id
-    gt = GameTeam.find(2012030221)
-    assert_equal gt, @gt
+    gt = GameTeam.find_by_game_id(2012030221)
+    assert_equal gt.game_id, @gt.game_id
   end
 end

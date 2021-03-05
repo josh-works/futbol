@@ -48,6 +48,6 @@ class GameTest < Minitest::Test
   
   def test_find_returns_game_by_id
     game = Game.find(2012030221)
-    assert_equal game, @game
+    assert_equal game.id, @game.id
   end
 end

@@ -1,3 +1,5 @@
+require './lib/helper'
+
 class GameTeam
   attr_reader :game_id,
               :team_id,
@@ -32,4 +34,20 @@ class GameTeam
     @giveaways = data[13].to_i
     @takeaways = data[14].to_i
   end
+  
+  def self.find_by_game_id(id)
+    GameTeam.all.find {|gameteam| gameteam.game_id == id }
+  end
+  
+  def self.all
+    @all ||= load_data
+  end
+  
+  def self.load_data
+    rows = CSV.read('data/game_teams.csv', headers: true, header_converters: :symbol)
+    rows.map do |row|
+      self.new(row)
+    end
+  end
+  
 end

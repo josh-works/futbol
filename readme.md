@@ -690,6 +690,38 @@ I already have this method in the `team_test` class, so I didn't add anything th
 
 OK, refactored to use a `module` for `Team#find`. Took a minute of Googling to figure out how to include the module on line 5 in such a way that I stopped getting a `method not found` error for `Team#find`. Team "Extends" `Finder`, per [Add class methods and instance methods to class by including one Module](http://rubyblog.pro/2017/04/class-methods-and-instance-methods-by-including-one-module)
 
+commit: `ddcb7a7`
 
+Lets extend this functionality to other classes now:
 
+When I run `rake` I get:
 
+```
+Run options: --seed 19617
+
+# Running:
+
+.........E.E.
+
+Fabulous run in 0.002867s, 4534.3565 runs/s, 14300.6627 assertions/s.
+
+  1) Error:
+GameTest#test_find_returns_game_by_id:
+NoMethodError: undefined method `find' for Game:Class
+    /Users/joshthompson/me/projects/futbol/test/game_test.rb:50:in `test_find_returns_game_by_id'
+
+  2) Error:
+GameTeamTest#test_find_returns_game_team_by_id:
+NoMethodError: undefined method `find' for GameTeam:Class
+    /Users/joshthompson/me/projects/futbol/test/game_team_test.rb:32:in `test_find_returns_game_team_by_id'
+
+13 runs, 41 assertions, 0 failures, 2 errors, 0 skips
+```
+
+As expended, no `find` method available there. But I've got a module that has this method!
+
+Now I've got no access to a method `all` for the class, so I'm going to add that to `finder` too....
+
+OK, a bunch of code just happened. I undoubtedly made some leaps. Read the commits carefully. I've got a working version that passes all tests here:
+
+``

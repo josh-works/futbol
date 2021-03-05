@@ -1,4 +1,7 @@
+require './lib/helper'
+
 class Game
+  extend Finder
   attr_reader :game_id,
               :season,
               :type,
@@ -9,7 +12,7 @@ class Game
               :home_goals,
               :venue,
               :venue_link
-               
+  
   def initialize(data)
     @game_id      = data[0].to_i
     @season       = data[1]
