@@ -477,3 +477,27 @@ OK, we're getting a little complicated, writing a lot of small methods. Try to s
 
 Here's where I'm at:
 
+`01b8a0d`
+
+I have to figure out how to load up all my `teams` data. I am making a "private class method", that looks like so:
+
+![load teams data](/images/2021-03-05-at-9.05-AM-load-teams-data.jpg)
+
+Now's a great time to flip to `name.rb` in that CSV exploration lesson for inspiration...
+
+I wrote out:
+
+```ruby
+def self.load_teams_data
+	rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
+	rows.map do |row|
+		Team.new(row)
+	end
+end
+```
+
+Lets run the tests, see how it looks.
+
+Ah, it needs the CSV class. I'll add a `require 'csv'` to the top of the file, though if you suspect we'll be using a helper file to handle all our requires soon... you'd be correct.
+
+

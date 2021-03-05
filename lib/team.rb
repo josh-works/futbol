@@ -1,3 +1,5 @@
+require 'csv'
+
 class Team
   attr_reader :team_id,
               :franchise_id,
@@ -6,6 +8,8 @@ class Team
               :stadium,
               :link,
               :all
+  @@filename = 'data/teams.csv'
+  
               
   def initialize(data)
     @team_id = data[0]
@@ -27,6 +31,9 @@ class Team
   private
   
   def self.load_teams_data
-    
+    rows = CSV.read(@@filename, headers: true, header_converters: :symbol)
+    rows.map do |row|
+      Team.new(row)
+    end
   end
 end
