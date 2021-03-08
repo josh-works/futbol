@@ -1141,5 +1141,63 @@ https://github.com/josh-works/futbol/commit/2541639
 
 OK, lets finish up Game Stats. I think when we move to other kinds of stats, it'll get far more interesting.
 
+## percentage_ties
+
+I had to update my `self.where` query to handle the way I wanted this method to work. To find all ties, I should be able to say 
+
+> find all Games where `winner` is `nil`
+
+At least, that's how I decided to do it. 
+
+So, that meant a query like:
+
+```ruby
+Game.where(winner: :nil)
+```
+
+That required an if/else statement in my `Game#where` query, otherwise I was getting `game does not respond to nil`, which is, in fact, true. `game.nil` doesn't make sense, but `game.nil?` totally does.
+
+Anyway, I then had to update my `#winner` and `#loser` classes, because I wasn't actually testing for a tie, just win/losses.
+
+Updated my tests a bit, too. They might be not-great. It would be nice to have `Factories` set up. I need a kinda-sorta valid Team to create a valid `Game`. There's something in Sandi Metz book about mocks/stubs, I'll look those up later.
+
+Current commit, with the above refactoring:
+
+https://github.com/josh-works/futbol/commit/1c77554
+
+## count_of_games_by_season
+
+Seems like a simple `group_by`, but I'm thinking I might also want to later create a `Season` class, so I could do something like:
+
+```ruby
+Season.all
+```
+
+and get something like:
+
+```
+{ id: [game_1, game_2],
+  id: [game_3, game_4] }
+```
+
+NVM, I'm going to use a lot of `Season` stuff down the line. Let's make a `Season` class.
+
+Here it is:
+
+https://github.com/josh-works/futbol/commit/793e9a7
+
+Now, that gives me `Season` instances that respond to `id` and `games`.
+
+I still want `Season.all` to work, so let me add a test and make it pass. 
+
+Did that here:
+
+https://github.com/josh-works/futbol/commit/5a2d703
+
+Now, lets do `count of games by season`. That'll be simply iterating through our `Season` objects with `Season.all.each` and calling `games.count` on each season.
+
+I've got it done here: 
+
+https://github.com/josh-works/futbol/commit/5e1e6f2
 
 
