@@ -55,4 +55,22 @@ class GameTest < Minitest::Test
     games = Game.all
     assert_equal 7441, games.count
   end
+  
+  ###############################
+  #       GAME STATISTICS       #
+  ###############################
+  
+  def test_sort_by_total_score
+    lowest_score = Game.sort_by_total_score.first
+    highest_score = Game.sort_by_total_score.last
+    assert_equal 0, lowest_score.total_score
+    assert_equal 11, highest_score.total_score
+  end
+  
+  def test_sort_by_total_score_with_argument
+    highest_score = Game.sort_by_total_score(sort: :desc)
+    lowest_score = Game.sort_by_total_score(sort: :asc)
+    assert_equal 0, lowest_score.first.total_score
+    assert_equal 11, highest_score.first.total_score
+  end
 end

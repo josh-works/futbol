@@ -8,6 +8,12 @@ class StatTracker
   end
   
   def highest_total_score
-    GameStats.highest_total_score
+    game = Game.sort_by_total_score(sort: :desc).first
+    game.total_score
+  end
+  
+  def lowest_total_score
+    game = Game.sort_by_total_score(sort: :asc).first
+    game.total_score
   end
 end
