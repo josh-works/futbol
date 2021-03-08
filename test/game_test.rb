@@ -83,9 +83,13 @@ class GameTest < Minitest::Test
   end
   
   def test_when_no_winner
-    data = "2012030221,20122013,Postseason,5/16/13,3,3,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
-    game = Game.new(data)
-    require "pry"; binding.pry
+    data = {
+      home_goals: 3,
+      away_goals: 3
+    }
+    game = GameMaker.new(data)
+    assert_equal 3, game.home_goals
+    assert_equal 3, game.away_goals
     assert_nil game.winner
   end
 end

@@ -1084,4 +1084,38 @@ GameMaker.new(home_goals: 3, away_goals: 4)
 ```
 And I'll get a `Game` object with those values set. (Everything else will be `nil`, which is fine, for testing purposes.)
 
-This lives in commit: 
+This lives in commit: https://github.com/josh-works/futbol/commit/0150cca
+
+For evidence that this is working, here's the test that fails, using my `Game` initialization method:
+
+```ruby
+def test_when_no_winner
+	data = {
+		home_goals: 3,
+		away_goals: 3
+	}
+	game = Game.new(data)
+	assert_equal 3, game.home_goals
+	assert_equal 3, game.away_goals
+	assert_nil game.winner
+end
+```
+
+And notice now using `GameMaker`, and it passes:
+
+```ruby
+def test_when_no_winner
+	data = {
+		home_goals: 3,
+		away_goals: 3
+	}
+	game = GameMaker.new(data)
+	assert_equal 3, game.home_goals
+	assert_equal 3, game.away_goals
+	assert_nil game.winner
+end
+```
+
+This `GameMaker` pattern might help me down the road, as it'll allow me to initialize `Game` objects (and `Team` objects with a `TeamMaker`, etc) in a flexible way, which will make my test writing vastly easier. 
+
+
