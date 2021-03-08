@@ -73,4 +73,12 @@ class GameTest < Minitest::Test
     assert_equal 0, lowest_score.first.total_score
     assert_equal 11, highest_score.first.total_score
   end
+  
+  def test_where_home_team_won
+    assert_equal 3237, Game.where(winner: :home_team).count
+  end
+  
+  def test_where_away_team_won
+    assert_equal 2687, Game.where(winner: :away_team).count
+  end
 end

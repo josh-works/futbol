@@ -16,4 +16,21 @@ class StatTracker
     game = Game.sort_by_total_score(sort: :asc).first
     game.total_score
   end
+  
+  def percentage_home_wins
+    home_wins = Game.where(winner: :home_team).count
+    StatTracker.percentage_of(home_wins, Game.all)
+  end
+  
+  def percentage_visitor_wins
+    away_wins = Game.where(winner: :away_team).count
+    StatTracker.percentage_of(away_wins, Game.all)
+  end
+  
+  def self.percentage_of(input_1, input_2)
+    input_1 = input_1.count if input_1.respond_to?(:count)
+    input_2 = input_2.count if input_2.respond_to?(:count)
+    
+    (input_1 / input_2.to_f).round(2)
+  end
 end

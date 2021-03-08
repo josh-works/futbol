@@ -57,6 +57,14 @@ class Game
     sorted
   end
   
+  def self.where(query)
+    key = query.first[0]
+    value = query[key]
+    Game.all.select do |game|
+      game.send(key) == game.send(value)
+    end
+  end
+  
   private
   
   def away_team_won?

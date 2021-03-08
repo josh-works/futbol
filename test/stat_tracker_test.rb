@@ -22,12 +22,13 @@ class StatTrackerTest < Minitest::Test
   def test_percentage_home_wins
     # Percentage of games that a home team has won (rounded to the nearest 100th) 	
     # => Float
+    assert_equal 0.44, @st.percentage_home_wins
   end
 
   def test_percentage_visitor_wins
     # Percentage of games that a visitor has won (rounded to the nearest 100th) 	
     # => Float
-    
+    assert_equal 0.36, @st.percentage_visitor_wins
   end
 
   def test_percentage_ties

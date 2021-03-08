@@ -919,3 +919,57 @@ With just multi-cursor movement. Consider doing the same. It's helping me organi
 Here's what I've got, as I've finished outlining the tests. I'm not committing to any of them, but it will help me know where I'm going.
 
 commit `d232113`
+
+---------------------
+
+Next session. In the last few days I realized I want to do away with this `GameStats` class (I think) and work on building up `Game` query methods.
+
+So, I've done that in this commit:
+
+https://github.com/josh-works/futbol/commit/c0fa719
+
+More complexity. I think I'd like to be able to do something like this:
+
+```ruby
+Game.where(winner: :home)
+Game.where(winner: :away)
+```
+
+and, well, get the games where the winner was the home team. Seems like this would be handy, right? We can probably imagine ways of upgrading the value of the queries, and as long as we can make this work how we want, this will be a useful tool to have down the road.
+
+To this end, here's the test I wrote:
+
+```ruby
+def test_where_home_won
+	assert_equal 144, Game.where(winner: :home)
+end
+```
+
+And here's my attempt at making it pass. I've not run the test yet, I know for a fact this is going to blow up:
+
+```ruby
+
+def self.where(query)
+	key = query.first
+	value = query.last
+	Game.select do |game|
+		game.send(key) == value
+	end
+end
+```
+
+Let's find out!
+
+OK, didn't quite work as written, minor updates:
+
+```ruby
+def self.where(query)
+	key = query.first[0]
+	value = query[key]
+	Game.all.select do |game|
+		game.send(key) == game.send(value)
+	end
+end
+```
+
+OK, now that this method works (I wrote model tests for my Game class, along with a helper method or two.)
