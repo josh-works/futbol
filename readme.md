@@ -977,3 +977,111 @@ OK, now that this method works (I wrote model tests for my Game class, along wit
 Commit:
 
 https://github.com/josh-works/futbol/commit/ec325f5
+
+## Naming inputs
+
+Story time: I've got these two methods:
+
+```ruby
+def winner
+	return away_team if away_team_won?
+	return home_team if home_team_won?
+end
+
+def loser
+	return away_team if !away_team_won?
+	return home_team if !home_team_won?
+end
+```
+
+Those call out to:
+
+```ruby
+def away_team_won?
+	away_goals > home_goals
+end
+
+def home_team_won?
+	home_goals > away_goals
+end
+```
+
+See the problem?
+
+This doesn't handle ties. What if both teams scored `3`?
+
+I need to set up a test that lets me set up a game where both teams scored 3. Here's how I'm setting up a team right now in my test:
+
+```ruby
+data = "2012030221,20122013,Postseason,5/16/13,3,6,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
+@game = Game.new(data)
+```
+
+Which one of those numbers do I need to update to get a game with no winners?
+
+Damned if I know. I went and looked at the `games.csv` data, tried counting, etc, it was ugly. Here's how I _want_ to be able to set up my game:
+
+```ruby
+data = {
+	game_id: 2012030221
+	,season: 20122013
+	,type: "Postseason"
+	,date_time: "5/16/13"
+	,away_team_id: 3
+	,home_team_id: 6
+	,away_goals: 2
+	,home_goals: 3
+	,venue: "Toyota Stadium"
+	,venue_link: "/api/v1/venues/null"
+}
+@game = Game.new(data)
+```
+
+See, because now I could specify the _exact_ values I want for goals, quite easily. 
+
+I remember reading something in Practical Object-Oriented Design in Ruby about this...
+
+Found it. Page 49: `Write Loosely Coupled Code: Isolate Multiparameter Initialization`. Sandi Metz says if you're _stuck_ relying on order-dependent object initialization, write a `wrapper` that takes a hash and makes a call to `Class.new` with the parameters correctly written. 
+
+So, what we'd do is something like this:
+
+```ruby
+class GameMaker
+	def self.new(data)
+		Game.new(
+			game_id: data[:game_id],
+			season: data[:season],
+			type: data[:type],
+			home_team_id: data[:home_team_id],
+			away_team_id: data[:away_team_id],
+			home_goals: data[:home_goals],
+			away_goals: data[:away_goals]
+		)
+	end
+end
+```
+etc. Then, you could use it like:
+
+```ruby
+data = {
+	home_goals: 3
+	away_goals: 4
+}
+GameMaker.new(data)
+=> # a new game instance
+```
+
+Let's take a stab at doing that. Mostly because its a good chance to practice building a wrapper around an inflexible interface (order-dependent initialization) and making it a more flexible interface (keyword-based object initialization). 
+
+Cool, it works:
+
+![wrapper](/images/2021-03-08-at-12.44-PM-initialization-wrapper.jpg)
+
+This now allows me to do something like:
+
+```ruby
+GameMaker.new(home_goals: 3, away_goals: 4)
+```
+And I'll get a `Game` object with those values set. (Everything else will be `nil`, which is fine, for testing purposes.)
+
+This lives in commit: 

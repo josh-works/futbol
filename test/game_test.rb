@@ -81,4 +81,11 @@ class GameTest < Minitest::Test
   def test_where_away_team_won
     assert_equal 2687, Game.where(winner: :away_team).count
   end
+  
+  def test_when_no_winner
+    data = "2012030221,20122013,Postseason,5/16/13,3,3,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
+    game = Game.new(data)
+    require "pry"; binding.pry
+    assert_nil game.winner
+  end
 end
