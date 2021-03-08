@@ -27,6 +27,8 @@ class StatTracker
     StatTracker.percentage_of(away_wins, Game.all)
   end
   
+  private
+  
   def self.percentage_of(input_1, input_2)
     input_1 = input_1.count if input_1.respond_to?(:count)
     input_2 = input_2.count if input_2.respond_to?(:count)
