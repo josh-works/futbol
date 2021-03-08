@@ -32,6 +32,13 @@ class StatTracker
     StatTracker.percentage_of(no_wins, Game.all)
   end
   
+  def count_of_games_by_season
+    Season.all.reduce({}) do |result,season|
+      result[season.id] = season.games.count
+      result
+    end
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)
