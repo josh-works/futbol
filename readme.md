@@ -973,3 +973,7 @@ end
 ```
 
 OK, now that this method works (I wrote model tests for my Game class, along with a helper method or two.)
+
+Commit:
+
+https://github.com/josh-works/futbol/commit/ec325f5
