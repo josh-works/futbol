@@ -34,7 +34,7 @@ class StatTrackerTest < Minitest::Test
   def test_percentage_ties
     # Percentage of games that has resulted in a tie (rounded to the nearest 100th) 	
     # => Float
-    
+    assert_equal 0.2, @st.percentage_ties
   end
 
   def test_count_of_games_by_season

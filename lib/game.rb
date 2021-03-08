@@ -36,13 +36,15 @@ class Game
   end
   
   def winner
-    return away_team if away_team_won?
-    return home_team if home_team_won?
+    return nil if home_goals == away_goals
+    return home_team if home_goals > away_goals
+    return away_team if away_goals > home_goals
   end
-  
+
   def loser
-    return away_team if !away_team_won?
-    return home_team if !home_team_won?
+    return nil if home_goals == away_goals
+    return away_team if away_goals < home_goals
+    return home_team if home_goals < away_goals
   end
   
   def total_score
@@ -61,17 +63,11 @@ class Game
     key = query.first[0]
     value = query[key]
     Game.all.select do |game|
-      game.send(key) == game.send(value)
+      if value == :nil
+        game.send(key) == nil
+      else
+        game.send(key) == game.send(value)
+      end
     end
-  end
-  
-  private
-  
-  def away_team_won?
-    away_goals > home_goals
-  end
-  
-  def home_team_won?
-    home_goals > away_goals
   end
 end

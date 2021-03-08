@@ -1118,4 +1118,28 @@ end
 
 This `GameMaker` pattern might help me down the road, as it'll allow me to initialize `Game` objects (and `Team` objects with a `TeamMaker`, etc) in a flexible way, which will make my test writing vastly easier. 
 
+Oh, and I did this, to turn off all the `circular loading` warnings whenever I ran `rake`:
+
+```diff
+diff --git a/Rakefile b/Rakefile
+index f37b89d..04a551b 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -2,6 +2,7 @@ require 'rake/testtask'
+
+ Rake::TestTask.new do |t|
+     t.pattern = "test/**/*_test.rb"
++    t.warning = false
+ end
+
+ task default: ["test"]
+```
+
+Inspired by [If you just want to turn off the warnings, you can do so in the rake test task setup:](https://stackoverflow.com/a/41136478/3210178)
+
+https://github.com/josh-works/futbol/commit/2541639
+
+OK, lets finish up Game Stats. I think when we move to other kinds of stats, it'll get far more interesting.
+
+
 

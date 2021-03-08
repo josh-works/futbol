@@ -82,6 +82,12 @@ class GameTest < Minitest::Test
     assert_equal 2687, Game.where(winner: :away_team).count
   end
   
+  def test_where_no_winner
+    assert_equal 1517, Game.where(winner: :nil).count
+  end
+  
+  
+  
   def test_when_no_winner
     data = {
       home_goals: 3,

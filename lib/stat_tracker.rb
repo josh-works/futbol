@@ -27,6 +27,11 @@ class StatTracker
     StatTracker.percentage_of(away_wins, Game.all)
   end
   
+  def percentage_ties
+    no_wins = Game.where(winner: :nil).count
+    StatTracker.percentage_of(no_wins, Game.all)
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)
