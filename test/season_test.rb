@@ -21,6 +21,8 @@ class SeasonTest < Minitest::Test
   end
   
   def test_season_all_returns_all_seasons
-    
+    result = Season.all
+    assert_equal 6, result.count
+    assert_equal 806, result[0].games.count
   end
 end
