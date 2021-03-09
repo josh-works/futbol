@@ -54,7 +54,7 @@ class StatTrackerTest < Minitest::Test
   def test_average_goals_per_game
     # Average number of goals scored in a game across all seasons including both home and away goals (rounded to the nearest 100th) 	
     # => Float
-    
+    assert_equal 4.22, @st.average_goals_per_game
   end
 
   def test_average_goals_by_season

@@ -98,4 +98,9 @@ class GameTest < Minitest::Test
     assert_equal 3, game.away_goals
     assert_nil game.winner
   end
+  
+  def test_sum
+    results = Game.total_goals_count
+    assert_equal 31413, results
+  end
 end

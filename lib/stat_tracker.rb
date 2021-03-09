@@ -39,6 +39,11 @@ class StatTracker
     end
   end
   
+  def average_goals_per_game
+    total_goals = Game.total_goals_count
+    (total_goals / Game.all.count.to_f).round(2)
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)

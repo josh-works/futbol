@@ -51,6 +51,12 @@ class Game
     away_goals + home_goals
   end
   
+  def self.total_goals_count
+    Game.all.inject(0) do |sum, game|
+      sum += game.total_score
+    end
+  end
+  
   def self.sort_by_total_score(sort: :asc)
     sorted = Game.all.sort_by do |game|
       game.away_goals + game.home_goals
