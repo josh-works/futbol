@@ -16,6 +16,8 @@ I started these notes after writing down to [A Digression to Turing's "CSV Explo
 
 - [Jason Gong's notes on the lesson] (https://gist.github.com/mhpjay422/4fdfb650910b18e82ab7d1731181edf3)
 
+----------------------
+
 Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.io/module1/lessons/csv_exploration](https://backend.turing.io/module1/lessons/csv_exploration)
 
 Honestly, I think this will be useful for me, because there's lots of data processing I want to do for other projects, related to parsing and relating large CSV exports. So, no matter where you are in your Turing Journey, this will serve you well. 
