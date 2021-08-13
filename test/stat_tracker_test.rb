@@ -69,6 +69,9 @@ class StatTrackerTest < Minitest::Test
       "20172018"=>4.44
     }
     assert_equal expected, @st.average_goals_by_season
-    
+  end
+  
+  def test_count_of_teams
+    assert_equal 32, @st.count_of_teams
   end
 end

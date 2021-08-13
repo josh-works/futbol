@@ -52,6 +52,10 @@ class StatTracker
     end
   end
   
+  def count_of_teams
+    Team.all.count
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)
