@@ -44,6 +44,14 @@ class StatTracker
     (total_goals / Game.all.count.to_f).round(2)
   end
   
+  def average_goals_by_season
+    Season.all.reduce({}) do |acc, season|
+      avg = season.total_goals.to_f / season.games.count
+      acc[season.id] ||= avg.round(2)
+      acc
+    end
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)

@@ -9,6 +9,14 @@ class Season
     @all ||= generate_season_data
   end
   
+  def total_goals
+    games.reduce(0) do |acc, game|
+      acc += game.home_goals
+      acc += game.away_goals
+      acc
+    end
+  end
+  
   private
   
   def self.generate_season_data
