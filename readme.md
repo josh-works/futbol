@@ -1200,4 +1200,92 @@ I've got it done here:
 
 https://github.com/josh-works/futbol/commit/5e1e6f2
 
+## StatTracker#average_goals_per_game
 
+Adding a query method.
+
+Maybe I'll end up doing something different. I thought of a `where`-esque kind of solution, but, meh. This is quick and easy. 
+
+https://github.com/josh-works/futbol/commit/f010060
+
+## StatTracker#average_goals_by_season
+
+This doesn't feel like very meaningful information.
+
+I have a `Season.all` method, so I can `map` through them, and do an `inject` for `games.total_score` and then divide that with `games.count`? Hm.
+
+I'm skeptical, but I don't see a different way to do it.
+
+_note to the reader. 4 months elapsed from me writing the above line, and the following. I wanted to come back to this project and finish it up, so I'm not moving forward with very, very low recollection of this entire project. This is a common phenomina that you'll encounter on the job. You'll do some work on a system, and then forget about it for months, and then need to come back and pick it up again. This isn't a problem, don't be discouraged, it's normal._
+
+... looks like this was a good strategy.
+
+And all the work for this method is visible in 
+
+https://github.com/josh-works/futbol/commit/d7ea53f
+
+## StatTracker#count_of_teams
+
+OK, we know we'll need to be able to call `StatTracker#count_of_teams`, so I'm outlining a basic version of that test:
+
+```ruby
+def test_count_of_teams
+	assert_equal 22, @st.count_of_teams
+	# i just made up the 22. I have no idea how many teams we've got.
+end
+```
+
+Ooooh, we've got all these `Team` things in the data. I just looked at `teams.rb` again, and because of the importing I'm seeing:
+
+```ruby
+class Team
+  extend Finder
+  extend DataLoader
+```
+
+I think `Team.all` will return an array of all team objects.
+
+So, my stat tracker method is amended to:
+
+```ruby
+def count_of_teams
+	Team.all.count
+end
+```
+
+and I rerun my test. Looks like we have _32_ teams instead of my guess of 22, so I'm going to update the spec.
+
+https://github.com/josh-works/futbol/commit/7362eb9
+
+## StatTracker#best_offense
+
+The spec says:
+
+> Name of the team with the highest average number of goals scored per game across all seasons.
+
+OK. So, we're going to ask our `Teams` a question that will require teach team to generate it's goals-per-game for all seasons.
+
+Something like `Team#avg_goal_per_game_all_seasons`. Then we'll do a `max_by` in our query method. The stat tracker method will look like:
+
+```ruby
+Teams.all.max_by(:avg_goal_per_game_all_seasons).name
+```
+
+and that should give us the name of the team. Lets make this work. What's our rough process?
+
+1. Write a failing test in the `stat_tracker_test` file
+2. write the outline of that method in the `stat_tracker` file
+3. Write a failing test in the `team_test.rb` file
+4. make the method past in `team.rb` 
+5. Use this new method from the `stat_tracker` class
+6. Everything passes?
+
+So, I've got _failing_ tests, but I still don't understand the requirement. 
+
+A team has an average goals per game across all seasons.
+
+Like.... 2.48?
+
+Anyway, here's the commit. Tests are failing, but I'm moving in an OK direction I think:
+
+https://github.com/josh-works/futbol/commit/a860b8
