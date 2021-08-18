@@ -56,6 +56,12 @@ class StatTracker
     Team.all.count
   end
   
+  def best_offense
+    Team.all.max do |team|
+      team.avg_goal_per_game_all_seasons
+    end.name
+  end
+  
   private
   
   def self.percentage_of(input_1, input_2)

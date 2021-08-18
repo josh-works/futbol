@@ -29,4 +29,14 @@ class TeamTest < Minitest::Test
   def test_alias_team_id_to_id
     assert_equal @team.id, @team.team_id
   end
+  
+  def test_games_finds_games_with_given_team
+    game_data = "2012030221,20122013,Postseason,5/16/13,3,6,2,3,Toyota Stadium,/api/v1/venues/null".split(',')
+    game = Game.new(game_data)
+    assert_equal @team.games, [game] 
+  end
+  
+  def test_avg_goal_per_game_all_seasons
+    assert_equal 2.2, @team.avg_goal_per_game_all_seasons
+  end
 end

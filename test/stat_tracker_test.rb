@@ -71,7 +71,15 @@ class StatTrackerTest < Minitest::Test
     assert_equal expected, @st.average_goals_by_season
   end
   
+  ###############################
+  #      LEAGUE STATISTICS      #
+  ###############################
+  
   def test_count_of_teams
     assert_equal 32, @st.count_of_teams
+  end
+  
+  def test_best_offense
+    assert_equal "Reign FC", @st.best_offense
   end
 end

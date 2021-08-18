@@ -20,5 +20,16 @@ class Team
     @link = data[5]
   end
   
+  def games
+    Game.find_by_team(self.id)
+  end
+  
+  def avg_goal_per_game_all_seasons
+    require "pry"; binding.pry
+    # something here to get avg goal per 
+    # game in a given season
+  end
+  
+  
   alias_method :id, :team_id
 end
