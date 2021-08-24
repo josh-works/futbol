@@ -39,8 +39,8 @@ class Name
     end
   end
   
-  def self.all_names
-    @all_names ||= load_name_data
+  def self.all
+    @all ||= load_name_data
   end
   
   def self.load_name_data
@@ -53,19 +53,20 @@ class Name
   def self.find_by_name(name_to_find)
     name_to_find = name_to_find.downcase
     
-    all_names.select do |name|
+    Name.all.select do |name|
       name.name == name_to_find
     end
   end
   
   def self.find_by_year(year)
-    all_names.select do |name|
+    year = year.to_s
+    Name.all.select do |name|
       name.year == year
     end
   end
   
   def self.count_by_year
-    grouped = all_names.group_by do |name|
+    grouped = Name.all.group_by do |name|
       name.year
     end
     grouped.reduce({}) do |talley, name|
@@ -84,7 +85,6 @@ class Name
   
   def self.intersection_of_query_results(results)
     return results.flatten if results.count == 1
-    
     case results.count
     when 2
       results = results[0] & results[1]
@@ -100,7 +100,7 @@ class Name
   def self.select_by_query(q)
     find_by = q.first
     criteria = q.last
-    all_names.select do |name|
+    Name.all.select do |name|
       name.send(find_by) == criteria
     end
   end
@@ -110,7 +110,7 @@ class Name
     
     if query.count == 1
       direction = query[sort_by].downcase
-      asc_sorted = all_names.sort_by do |name|
+      asc_sorted = Name.all.sort_by do |name|
         [name.send(sort_by[0])]
       end
       asc_sorted.reverse! if direction == :desc  
@@ -127,6 +127,3 @@ class Name
     end
   end
 end
-
-pp "Name#order"
-pp Name.order(ethnicity: :asc, name: :asc).take(5)

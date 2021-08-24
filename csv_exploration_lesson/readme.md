@@ -1,16 +1,9 @@
 # Josh's _excruciatingly detailed_ notes on Turing's "Class Methods" lesson
 
+### The lesson: https://backend.turing.edu/module1/lessons/class_methods
+
 As I started the `Futbol` project, and as _you_ might start it, it'll be important to understand reading CSVs, and how to build up objects and run queries on them.
 
-Turing's [Class Methods lesson]() is pretty good! What follows is my exploration of the resource. 
-
-I am copy/pasting the file from the root-level `readme.md` into a `readme.md` for this particular lesson, nestled inside of this particular directory. 
-
-Hopefully it's not too confusing. Organizing information isn't easy, so bear with me as you work through these resources.
-
-I started these notes after writing down to [A Digression to Turing's "CSV Exploration" lesson](https://github.com/josh-works/futbol/blob/master/readme.md#a-digression-to-turing-s-csv-exploration-lesson), and when you've finished reading/working through this lesson, you should pick that readme back up where you left it off.
-
-----------------------
 
 ## Notes/gotchas from others who have worked through this guide 
 
@@ -18,11 +11,11 @@ I started these notes after writing down to [A Digression to Turing's "CSV Explo
 
 ----------------------
 
-Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.io/module1/lessons/csv_exploration](https://backend.turing.io/module1/lessons/csv_exploration)
+Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.io/module1/lessons/csv_exploration](https://backend.turing.edu/module1/lessons/class_methods)
 
 Honestly, I think this will be useful for me, because there's lots of data processing I want to do for other projects, related to parsing and relating large CSV exports. So, no matter where you are in your Turing Journey, this will serve you well. 
 
-OK, even before CSV exploration, taking a dive into Turing's lesson on class methods, because we'll end up needed this kind of information for the setup of `futbol`, else you'll end up struggling to implement any sort of OO principles.
+OK, even before CSV exploration, we're going to take a dive into Turing's [lesson on class methods](https://backend.turing.edu/module1/lessons/class_methods), because we'll end up needed this kind of information for the setup of `futbol`, else you'll end up struggling to implement any sort of OO principles.
 
 ## A further digression to Turing's Class Methods lesson (which uses CSV data!)
 
@@ -35,9 +28,12 @@ I encourage you to do the same. I'm going to do this work in this repo, just for
 I'll use `curl` to download the given file. I don't always remember the exact syntax for `curl` commands, so I'll do `tldr curl` and see that I want to use:
 
 ```
+tldr curl 
 mkdir csv_exploration_lesson
 curl https://data.cityofnewyork.us/api/views/25th-nujf/rows.csv?accessType=DOWNLOAD -o csv_exploration_lesson/popular_baby_names.csv
 ```
+
+You can also just visit the URL, download the file, and drag the CSV from your downloads folder to some sort of `/data` folder available in this repository.
 
 Commit for the above: `de569db`
 
