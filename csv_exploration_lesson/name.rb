@@ -99,7 +99,7 @@ class Name
   
   def self.select_by_query(q)
     find_by = q.first
-    criteria = q.last
+    criteria = q.last.downcase
     Name.all.select do |name|
       name.send(find_by) == criteria
     end

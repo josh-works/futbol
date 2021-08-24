@@ -31,5 +31,10 @@ class NameTest < Minitest::Test
     assert_equal query.count, 5863
   end
   
+  def test_where_with_multiple_queries
+    query = Name.where(year: "2011", name: "Gia")
+    assert_equal 6, query.count
+  end
+  
   
 end
