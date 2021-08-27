@@ -76,25 +76,12 @@ class Name
   end
   
   def self.where(query)
-    results = []
-    query.each do |q|
-      results << select_by_query(q)
+    query.reduce([]) do |acc, q|
+      data = Name.select_by_query(q)
+      acc = data if acc.empty?
+      acc = acc & data
+      acc
     end
-    intersection_of_query_results(results)
-  end
-  
-  def self.intersection_of_query_results(results)
-    return results.flatten if results.count == 1
-    case results.count
-    when 2
-      results = results[0] & results[1]
-    when 3
-      results = results[0] & results[1] & results[2]
-    when 4
-      results = results[0] & results[1] & results[2] & results[3]
-    end
-    
-    results.flatten
   end
   
   def self.select_by_query(q)

@@ -33,22 +33,6 @@ class NameTest < Minitest::Test
   
   def test_where_with_multiple_queries
     query = Name.where(year: "2011", name: "Gia")
-    assert_equal 6  , query.count
+    assert_equal 6, query.count
   end
-  
-  def test_intersection_of_query_results_removes_all_non_shared_results
-    data = [["a", "b"], ["b"]]
-    results = Name.intersection_of_query_results(data)
-    
-    assert_equal results, ["b"]
-  end
-  
-  def test_intersection_of_query_results_more_complicated_data
-    data = [["a", "b", "c"], ["b", "c", "z"], ["b", "c", "d"]]
-    results = Name.intersection_of_query_results(data)
-    
-    assert_equal results, ["b", "c"]
-  end
-  
-  
 end
