@@ -80,11 +80,11 @@ class Name
       data = Name.select_by_query(q)
       acc = data if acc.empty?
       acc = acc & data
-      acc
     end
   end
   
   def self.select_by_query(q)
+    puts q.class
     find_by = q.first
     criteria = q.last.downcase
     Name.all.select do |name|

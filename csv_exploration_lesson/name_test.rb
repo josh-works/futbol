@@ -4,6 +4,7 @@ require 'minitest/pride'
 require './csv_exploration_lesson/name'
 
 class NameTest < Minitest::Test
+  
   def test_find_by_name_finds_names_by_default
     assert Name.find_by_name("Gia")
     assert_equal 31, Name.find_by_name("Gia").count

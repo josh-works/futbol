@@ -285,7 +285,7 @@ pp Name.find_by_name("Hunter").count
 
 and when I run it, I get the results:
 
-![counts](/images/2021-03-03-at-9.49 AM-counts.jpg)
+![counts](/images/2021-03-03-at-9.49-AM-counts.jpg)
 
 Done with question 2. commit: `8b86bda`
 
