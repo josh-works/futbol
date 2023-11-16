@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 require 'active_support/core_ext/string/inflections'
 
 class Name

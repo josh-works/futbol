@@ -25,7 +25,6 @@ class Team
   end
   
   def avg_goal_per_game_all_seasons
-    require "pry"; binding.pry
     # something here to get avg goal per 
     # game in a given season
   end

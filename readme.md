@@ -348,7 +348,7 @@ Here's what I've got... lets get it to run!
 
 oh, yeah, requires are wrong. Lets peek at some existing test file somewhere...
 
-And added a little front-matter in commit [3a64799](3a64799)
+And added a little front-matter in commit https://github.com/josh-works/futbol/commit/3a64799
 
 OK, test runs, now it gets an error, which... is to be expected.
 
@@ -356,7 +356,7 @@ OK, test runs, now it gets an error, which... is to be expected.
 
 And the test passes:
 
-[https://github.com/josh-works/futbol/commit/4494178](https://github.com/josh-works/futbol/commit/4494178)
+https://github.com/josh-works/futbol/commit/4494178
 
 Break time for me! Been a long day. I'm glad that I'm finally getting to write some of the code on this project, though!
 
