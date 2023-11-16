@@ -1,6 +1,6 @@
 ## Rebuilding Turing's Futbol Project
 
-I've now worked with a number of Turing students on the [futbol](https://backend.turing.io/module1/projects/futbol/index) project.
+I've now worked with a number of Turing students on the [futbol](https://backend.turing.edu/module1/projects/futbol/index) project.
 
 There's a few consistent spots that they tend to get stuck on, but I'm not familiar enough with the right solution to guide them to it.
 
@@ -148,11 +148,11 @@ OH! Forgot to mention... I'm about 20 minutes into beginning this project, 2021-
 
 The commit logs will show "wall time" that's elapsed as I've completed this project, but I'll be carefully tracking how much time I spend actually _implementing_ this project. So far, we've not really begun any implementation besides setting up an empty git repo, adding a `readme.md`, and a folder for images.
 
-Back to the `futbol` spec, under `iterations`: [https://backend.turing.io/module1/projects/futbol/index](https://backend.turing.io/module1/projects/futbol/index)
+Back to the `futbol` spec, under `iterations`: [https://backend.turing.edu/module1/projects/futbol/index](https://backend.turing.edu/module1/projects/futbol/index)
 
 - `Iteration 1: Setup and File I/O`
 
-Click the link to `iteration 1`: [https://backend.turing.io/module1/projects/futbol/iterations/file_io](https://backend.turing.io/module1/projects/futbol/iterations/file_io)
+Click the link to `iteration 1`: [https://backend.turing.edu/module1/projects/futbol/iterations/file_io](https://backend.turing.edu/module1/projects/futbol/iterations/file_io)
 
 The steps are:
 
@@ -165,7 +165,7 @@ I'll be skipping the Rakefile and Simplecov step for now. If you're following th
 
 OK, the `File I/O` section... is so barebones. 
 
-I'm going to take a break from this (because the instructions are junk) and take a tour through... [CSV Exploration](https://backend.turing.io/module1/lessons/csv_exploration)
+I'm going to take a break from this (because the instructions are junk) and take a tour through... [CSV Exploration](https://backend.turing.edu/module1/lessons/csv_exploration)
 
 ## A Digression to Turing's "CSV Exploration" lesson
 
@@ -305,7 +305,7 @@ And now the instructions say:
 
 
 
-hm. The only next step is: [https://backend.turing.io/module1/projects/futbol/iterations/statistics](https://backend.turing.io/module1/projects/futbol/iterations/statistics)
+hm. The only next step is: [https://backend.turing.edu/module1/projects/futbol/iterations/statistics](https://backend.turing.edu/module1/projects/futbol/iterations/statistics)
 
 Which doesn't talk much about how to set this thing up. 
 

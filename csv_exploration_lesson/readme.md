@@ -11,7 +11,7 @@ As I started the `Futbol` project, and as _you_ might start it, it'll be importa
 
 ----------------------
 
-Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.io/module1/lessons/csv_exploration](https://backend.turing.edu/module1/lessons/class_methods)
+Because `Futbol` throws you into using CSVs, in a rather advanced way, you'll need to scaffold your understanding. This is a hard-to-find tutorial for exploring how to use CSVs in Ruby, and _it is worth every moment of time you spend on it_: [https://backend.turing.edu/module1/lessons/csv_exploration](https://backend.turing.edu/module1/lessons/class_methods)
 
 Honestly, I think this will be useful for me, because there's lots of data processing I want to do for other projects, related to parsing and relating large CSV exports. So, no matter where you are in your Turing Journey, this will serve you well. 
 
@@ -19,7 +19,7 @@ OK, even before CSV exploration, we're going to take a dive into Turing's [lesso
 
 ## A further digression to Turing's Class Methods lesson (which uses CSV data!)
 
-We'll work through [https://backend.turing.io/module1/lessons/class_methods](https://backend.turing.io/module1/lessons/class_methods).
+We'll work through [https://backend.turing.edu/module1/lessons/class_methods](https://backend.turing.edu/module1/lessons/class_methods).
 
 I encourage you to do the same. I'm going to do this work in this repo, just for the sake of easy committing/tracking of progress. I'm working through the `Practical Use, Experimentation` section:
 
