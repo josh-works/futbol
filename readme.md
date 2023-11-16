@@ -94,7 +94,7 @@ I'll also be using screenshots throughout this guide, so I need a location to st
 
 And that'll be another commit. Obviously you don't need to be committing like this or anything. I just want to explain every step of my process, so if you check out the specific commits I list in the future, you'll be able to understand all the constituent pieces of what's gone into the application.
 
-`5668ba1`
+commit `5668ba1`
 
 [https://github.com/josh-works/futbol/commit/5668ba1](https://github.com/josh-works/futbol/commit/5668ba1)
 
@@ -191,7 +191,7 @@ Consider yourself warned...
 
 add a `.keep` to the inside - that lets the file get added to `git` and you can commit it: `ea02997`
 
-[ea02997](ea02997)
+[https://github.com/josh-works/futbol/commit/ea02997](https://github.com/josh-works/futbol/commit/ea02997)
 
 ## download and explore CSV files
 
@@ -275,9 +275,9 @@ Why not try running it? I know it's not going to work, we've not created the `St
 
 So, lets do that...
 
-create base class: [8b736b5](8b736b5)
+create base class: [https://github.com/josh-works/futbol/commit/8b736b5](https://github.com/josh-works/futbol/commit/8b736b5)
 
-create runner file: [e951634](e951634)
+create runner file: [https://github.com/josh-works/futbol/commit/e951634](https://github.com/josh-works/futbol/commit/e951634)
 
 run it:
 
@@ -331,7 +331,7 @@ Of course I'll need to write tests against those classes, because the non-TDD wa
 
 I don't have to worry too much about the long-term growth of this application, since I know at minimum a little about the stuff I'll do with `Games`. I'll just set that up next time I sit down, and I'll share the progress with you.
 
-[9cfae08](9cfae08)
+[https://github.com/josh-works/futbol/commit/9cfae08](https://github.com/josh-works/futbol/commit/9cfae08)
 
 OK, outlined an idea game class, based on the first row of `game.csv`. I'm just making on attribute for every column.
 
@@ -356,7 +356,7 @@ OK, test runs, now it gets an error, which... is to be expected.
 
 And the test passes:
 
-[4494178](4494178)
+[https://github.com/josh-works/futbol/commit/4494178](https://github.com/josh-works/futbol/commit/4494178)
 
 Break time for me! Been a long day. I'm glad that I'm finally getting to write some of the code on this project, though!
 
@@ -397,11 +397,11 @@ This fails, of course... do you know why? Take a moment, think, why does this te
 
 answer: uninitialized constant `Team`. Lets make it pass, but along the way, we'll start a `team_test.rb` file too.
 
-`4b2f7bd`
+[https://github.com/josh-works/futbol/commit/4b2f7bd](https://github.com/josh-works/futbol/commit/4b2f7bd)
 
 Adding a test - notice how I'm using `data` in the `setup` method - that string (critically) ends with `"".split(",")`, which allows me to take the first row of data from the `teams.csv`, copy-paste it in here, and split it into an array, ready to be "consumed" by my `initialization` method.
 
-This new test passes: `325feec`
+This new test passes: [https://github.com/josh-works/futbol/commit/325feec](https://github.com/josh-works/futbol/commit/325feec)
 
 So, back to my `Game` class, to figure out how to get `game.home_team` to return a `Team` instance.
 
@@ -409,7 +409,7 @@ So, back to my `Game` class, to figure out how to get `game.home_team` to return
 
 Currently, running the test, I get `Uninitialized Constant Team`. Let's add another `require` statement, but this time we're going to introduce a "test helper" file. This file will contain all necessary require statements and gems, and we'll simply require it from each additional test file we might create. Go look at this specific commit:
 
-`c62ddd4`
+[https://github.com/josh-works/futbol/commit/c62ddd4](https://github.com/josh-works/futbol/commit/c62ddd4)
 
 It'll save you a lot of hassle down the road. This also solves our `Uninitialized Constant` problem - now we're getting `undefined method`, because there is no `away_team` method. Lets add it:
 
@@ -439,7 +439,7 @@ When I run the tests, I get:
 NoMethodError: undefined method `find' for Team:Class
 ```
 
-`b5ef633`
+[https://github.com/josh-works/futbol/commit/b5ef633](https://github.com/josh-works/futbol/commit/b5ef633)
 
 ## Adding Team.find()
 
@@ -477,7 +477,7 @@ OK, we're getting a little complicated, writing a lot of small methods. Try to s
 
 Here's where I'm at:
 
-`01b8a0d`
+[https://github.com/josh-works/futbol/commit/01b8a0d](https://github.com/josh-works/futbol/commit/01b8a0d)
 
 I have to figure out how to load up all my `teams` data. I am making a "private class method", that looks like so:
 
@@ -500,7 +500,7 @@ Lets run the tests, see how it looks.
 
 Ah, it needs the CSV class. I'll add a `require 'csv'` to the top of the file, though if you suspect we'll be using a helper file to handle all our requires soon... you'd be correct.
 
-Here's the current state of things: `8feb80d`
+Here's the current state of things: [https://github.com/josh-works/futbol/commit/8feb80d](https://github.com/josh-works/futbol/commit/8feb80d)
 
 When I run the tests, I have a failure and an error.
 
@@ -552,7 +552,7 @@ These are different:
 
 I'll update my initialization method to convert the `team_id` to an integer, and all passes:
 
-`52a2f44`
+[https://github.com/josh-works/futbol/commit/52a2f44](https://github.com/josh-works/futbol/commit/52a2f44)
 
 Lets try my other test, see how that looks...
 
@@ -560,11 +560,11 @@ Lets try my other test, see how that looks...
 
 Ah, I need to coerce all `id`-like bits of data to an integer. I'll go ahead and update the tests and initialize to convert more stuff to integers... and the tests pass:
 
-`8978149`
+[https://github.com/josh-works/futbol/commit/8978149](https://github.com/josh-works/futbol/commit/8978149)
 
 Now lets add a `home_team` method (and test) and we're doing fine. Tests still pass.
 
-`7f75e86`
+https://github.com/josh-works/futbol/commit/7f75e86
 
 ----------------------------
 
@@ -593,7 +593,7 @@ Here's how usage looks:
 
 ![rakefile](/images/2021-03-05-at-9.31-AM-adding-rakefile.jpg)
 
-added it in this commit: `ef93f3b`
+added it in this commit: https://github.com/josh-works/futbol/commit/ef93f3b
 
 OK, next, even without looking at much other stuff in the spec, I know I'll want to know who won a particular game. 
 
@@ -603,7 +603,7 @@ So, I'll write out a test in `game_test.rb`, and let that drive me towards deali
 
 ## Game#winner
 
-Outlined my (failing) test here: `24d447f`. 
+Outlined my (failing) test here: https://github.com/josh-works/futbol/commit/24d447f
 
 Now lets build a `game_teams` model. I'll need to be able to say, at minimum, something like:
 
@@ -620,11 +620,11 @@ Lets go build `GameTeam`!
 
 (BTW, I know I'm going to need a `Class.all` method for `Game`. You can build your own implementation of that now if you want. There's no "exactly correct" order to how to do all this.)
 
-So, outline my test, same as before. Update my `test_helper` to reference my new `game_team` class, and we have a passing test. `ecd0275`
+So, outline my test, same as before. Update my `test_helper` to reference my new `game_team` class, and we have a passing test. https://github.com/josh-works/futbol/commit/ecd0275
 
 A little more cleanup, anytime I have an `_id` attirbute, I can just coerce that string to an integer. In fact, most attibutes of `GameTeam` are integers (except for `#face_off_win_percentage` needs to be a `Float`), so lets do that...
 
-Update tests, update code, test still passes in commit `ecf890f`
+Update tests, update code, test still passes in commit https://github.com/josh-works/futbol/commit/ecf890f
 
 -----------
 
@@ -653,7 +653,7 @@ OK, a little more code (lots of small, clearly-labeled methods) and we've got pa
 
 Why not add a `loser` method too, just for completeness. I could see it making code more readable!
 
-`cce5fd0`
+https://github.com/josh-works/futbol/commit/cce5fd0
 
 ## Refactoring `game.game_id` to `game.id`, `team.team_id` to `team.id`
 
@@ -665,7 +665,7 @@ Here's what it looks like:
 
 ![alias method](/images/2021-03-05-at-11.09-AM-alias-method.jpg)
 
-And the commit: `afbeca3`
+And the commit: https://github.com/josh-works/futbol/commit/afbeca3
 
 -------------
 
@@ -684,13 +684,13 @@ Team.find(team_id)
 
 This is a good spot to use a `Module` to enable this funcionality across all three classes without duplicating a bunch of code. I'll go ahead an add this, so you can get a feel for how it could work. First, lets add tests to all three classes that prove that this functionality will exist.
 
-I've added failing tests here: `6ac30c6`
+I've added failing tests here: https://github.com/josh-works/futbol/commit/6ac30c6
 
 I already have this method in the `team_test` class, so I didn't add anything there.
 
 OK, refactored to use a `module` for `Team#find`. Took a minute of Googling to figure out how to include the module on line 5 in such a way that I stopped getting a `method not found` error for `Team#find`. Team "Extends" `Finder`, per [Add class methods and instance methods to class by including one Module](http://rubyblog.pro/2017/04/class-methods-and-instance-methods-by-including-one-module)
 
-commit: `ddcb7a7`
+commit: https://github.com/josh-works/futbol/commit/ddcb7a7
 
 Lets extend this functionality to other classes now:
 
@@ -724,11 +724,11 @@ Now I've got no access to a method `all` for the class, so I'm going to add that
 
 OK, a bunch of code just happened. I undoubtedly made some leaps. Read the commits carefully. I've got a working version that passes all tests here:
 
-`e944702`
+https://github.com/josh-works/futbol/commit/e944702
 
 and refactored some more...
 
-`eeb2df4`
+https://github.com/josh-works/futbol/commit/eeb2df4
 
 ----------------------
 
@@ -769,11 +769,11 @@ OK, bunch of futzing around. Messing with requires, to keep my code well-organiz
 
 I've got a passing test (the first one) for my `GameStats` class:
 
-`ca21d0d`
+https://github.com/josh-works/futbol/commit/ca21d0d
 
 and refactored a bit more to make _all_ tests pass, with the usage of `rake`:
 
-`ea56f01`
+https://github.com/josh-works/futbol/commit/ea56f01
 
 ----------
 
@@ -816,7 +816,7 @@ require './lib/...'
 I'll change it to `require_relative ./...`
 
 
-Commit showing the changes: 
+Commit showing the changes: https://github.com/josh-works/futbol/commit/8b0c1a7
 
 Sigh. So frustrating. I'm losing a lot of time trying to make both my local tests and the spec harness run without errors.
 
@@ -832,7 +832,7 @@ TONS of `uninitialized constant` errors.
 
 I guess I'll just bite the bullet on the circular loading error, and accept the successful RSPEC output.
 
-Here's the commit: `51d564d`
+Here's the commit: https://github.com/josh-works/futbol/commit/51d564d
 
 -------------------
 
@@ -918,7 +918,7 @@ With just multi-cursor movement. Consider doing the same. It's helping me organi
 
 Here's what I've got, as I've finished outlining the tests. I'm not committing to any of them, but it will help me know where I'm going.
 
-commit `d232113`
+commit https://github.com/josh-works/futbol/commit/d232113
 
 ---------------------
 
